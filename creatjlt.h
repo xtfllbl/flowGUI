@@ -21,17 +21,22 @@ private:
     void parseModuleElement(QDomElement const&);
     void parsePropertyElement(const QDomElement &element);
     bool readXmlJobList(QIODevice *);
-    void creatTxtJobList();
     void analysisJobXML();
-
+    void RunProcess();
 
     QFile exFile;
     QTextStream textStream;
 
     int count;
+    int processCount;
+
+    QHash<int , int> hashJob;
+
 public slots:
     bool setXMLJobListFileName(const QString fileName);
     void startRun();
+    void processFinished(int pid, int sig, QProcess::ExitStatus);
+
 };
 
 #endif // CREATJLT_H

@@ -2,7 +2,7 @@
 #define CREATUI_H
 #include <QtGui>
 #include "writejob.h"
-#include "widget/qjdradiobutton.h"
+#include "src/qjdradiobutton.h"
 
 class creatUI: public QWidget
 {

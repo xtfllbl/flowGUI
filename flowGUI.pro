@@ -23,12 +23,13 @@ SOURCES += main.cpp\
     qjdstackwidget.cpp \
     writejob.cpp \
     creatjlt.cpp \
-    widget/qjdlineedit.cpp \
-    widget/qjdradiobutton.cpp \
-    widget/qjdcheckbox.cpp \
-    widget/qjdcombobox.cpp \
-    widget/qjdspinbox.cpp \
-    widget/qjdgroupbox.cpp
+    src/qjdlineedit.cpp \
+    src/qjdradiobutton.cpp \
+    src/qjdcheckbox.cpp \
+    src/qjdcombobox.cpp \
+    src/qjdspinbox.cpp \
+    src/qjdgroupbox.cpp \
+    src/qjdprocess.cpp
 
 HEADERS  += mainwindow.h \
     creatui.h \
@@ -39,12 +40,13 @@ HEADERS  += mainwindow.h \
     qjdstackwidget.h \
     writejob.h \
     creatjlt.h \
-    widget/qjdlineedit.h \
-    widget/qjdradiobutton.h \
-    widget/qjdcheckbox.h \
-    widget/qjdcombobox.h \
-    widget/qjdspinbox.h \
-    widget/qjdgroupbox.h
+    src/qjdlineedit.h \
+    src/qjdradiobutton.h \
+    src/qjdcheckbox.h \
+    src/qjdcombobox.h \
+    src/qjdspinbox.h \
+    src/qjdgroupbox.h \
+    src/qjdprocess.h
 
 FORMS    += \
     mainwindow.ui

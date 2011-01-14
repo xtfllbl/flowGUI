@@ -1,11 +1,11 @@
 #include "creatui.h"
 #include <QTime>
-#include "widget/qjdcheckbox.h"
-#include "widget/qjdcombobox.h"
-#include "widget/qjdlineedit.h"
-#include "widget/qjdradiobutton.h"
-#include "widget/qjdspinbox.h"
-#include "widget/qjdgroupbox.h"
+#include "src/qjdcheckbox.h"
+#include "src/qjdcombobox.h"
+#include "src/qjdlineedit.h"
+#include "src/qjdradiobutton.h"
+#include "src/qjdspinbox.h"
+#include "src/qjdgroupbox.h"
 
 /// readxml->creatui->creatjoblist
 creatUI::creatUI(QWidget *parent) :

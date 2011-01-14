@@ -1,4 +1,6 @@
 #include "creatjlt.h"
+#include "src/qjdprocess.h"
+#include <QMessageBox>
 
 creatJLT::creatJLT(QObject *parent) :
     QObject(parent)
@@ -6,6 +8,8 @@ creatJLT::creatJLT(QObject *parent) :
     xmlFileName.clear();
     exFile.setFileName("joblist/ceshishuchu.txt");
     count=99;
+    processCount=0;
+    hashJob.clear();
 }
 
 bool creatJLT::setXMLJobListFileName(const QString fileName)
@@ -33,8 +37,11 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
     {
         qDebug()<<"it is now in else~~~~~~~~~~~~~~~~~~";
         textStream.setDevice(&exFile);
+        textStream<<processCount<<"\n";
         textStream<<"/home/lub/program/qt/flow/MainFlow\n";
-        textStream<<"job1.log\n";
+        textStream<<"job";
+        textStream<<processCount;
+        textStream<<".log\n";
         textStream<<count;
     }
 
@@ -82,15 +89,45 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
     return true;
 }
 
- void creatJLT::creatTxtJobList()
- {
- }
-
  void creatJLT::startRun()
  {
      qDebug()<<"start Run";
+     if(hashJob.values().size()==4)
+     {
+         qDebug()<<"No more than 4 process in one time.";
+//         QMessageBox::warning(this,"Not Allowed","No more than 4 process in one time.");
+         return;
+     }
+
+     if(!hashJob.values().contains(4))
+         processCount=4;
+     if(!hashJob.values().contains(3))
+         processCount=3;
+     if(!hashJob.values().contains(2))
+         processCount=2;
+     if(!hashJob.values().contains(1))
+         processCount=1;
+
      analysisJobXML();
+     RunProcess();
  }
+ void creatJLT::RunProcess()
+  {
+      QStringList paralist;
+      paralist.append("joblist/ceshishuchu.txt");
+
+      QJDProcess *JDP=new QJDProcess;
+      connect(JDP, SIGNAL(sigFinished(int,int,QProcess::ExitStatus)), this, SLOT(processFinished(int, int, QProcess::ExitStatus)));
+      JDP->start("MainFlow",paralist);
+      JDP->savePID();
+      hashJob.insert(JDP->getPID(),processCount);
+  }
+
+ void creatJLT::processFinished(int pid, int sig, QProcess::ExitStatus exitStatus)
+  {
+      qDebug()<<pid<<sig<<exitStatus;
+      hashJob.remove(pid);
+  }
 
  /// 处理各个模块
  void creatJLT::parseModuleElement(QDomElement const& moduleNameEle)
