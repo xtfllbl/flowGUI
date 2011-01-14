@@ -32,10 +32,12 @@ void readXMLModule::nodeClear()
     max.clear();
     min.clear();
     displaytype.clear();
+    displaytext.clear();
     displayvalue.clear();
     optiontext.clear();
     optionvalue.clear();
-    showvalue.clear();
+    hidevalue.clear();
+    hidetype.clear();
 }
 
 void readXMLModule::setXML(QIODevice */*d*/)
@@ -69,8 +71,10 @@ bool readXMLModule::read(QIODevice *device)
     }
     QDomElement module = root.firstChildElement("module");
     modulename=module.attribute("name");
-    emit sigModuleName(modulename);
-//    qDebug()<<modulename;
+    /// 同样需要发送模块名称，方便使用, modulename
+    emit sigModuleName(modulename);   // 没有connect
+    //    qDebug()<<modulename;
+
 
     QDomElement child=module.firstChildElement("property");
     /// 只处理property,当中有其他的可不行，例如隐藏之类的
@@ -83,7 +87,8 @@ bool readXMLModule::read(QIODevice *device)
 
         // 设置一套机制传送信息
         /// 貌似有没有没有必要
-        emit sigNodeData(property,desc,datatype,min,max,displaytype,displayvalue,optiontext,optionvalue,showvalue);   //9
+        emit sigNodeData(property,desc,datatype,min,max,displaytype,displaytext,displayvalue,
+                         optiontext,optionvalue,hidevalue,hidetype);
 
         child = child.nextSiblingElement("property");
     }
@@ -137,6 +142,8 @@ void readXMLModule::parsePropertyElement(const QDomElement &element)
         {
             QDomElement option;
             displaytype=child.attribute("name");
+            //        <displaytype name="lineedit" text="testshowlable3">lineditshow</displaytype>
+            displaytext=child.attribute("text");
             displayvalue=child.text();
 //            qDebug()<<"displaytype::"<<displaytype;
             hasDisplayType=true;
@@ -155,9 +162,10 @@ void readXMLModule::parsePropertyElement(const QDomElement &element)
                 }
             }
         }
-        else if (child.tagName() == "visible")  /// 用来取代label?
+        else if (child.tagName() == "hide")  /// 还需要传入隐藏空间类型
         {
-            showvalue=child.text();   //YES=show, NO=hide
+            hidevalue=child.text();   //YES=show, NO=hide
+            hidetype=child.attribute("type");
         }
         child = child.nextSiblingElement(); //循环
     }

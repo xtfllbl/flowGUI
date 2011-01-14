@@ -8,6 +8,7 @@
 #include "qjdmodulelist.h"
 #include "qjdflowlist.h"
 #include "qjdstackwidget.h"
+#include "creatjlt.h"
 
 namespace Ui {
     class MainWindow;
@@ -22,12 +23,17 @@ public:
     ~MainWindow();
 
     qjdModuleList *moduleList;
-    qjdFlowList *flowList;
     qjdStackWidget *stackWidget;
 
-//    creatUI *creat;
-//    readXMLModule *xml;
-//    readXMLIndex *xmlIndex;
+    qjdFlowList *flowList;
+//    QPushButton *upButton;
+//    QPushButton *downButton;
+    QPushButton *delButton;
+
+    creatJLT *jlt;
+
+    QSplitter *splitter;
+//    QSplitter splitter2;
 
     QFile fileXMLIndex;
     QFile fileXML;
@@ -39,6 +45,7 @@ private:
     void resizeEvent(QResizeEvent *);
 
 private slots:
+    void on_actionExcute_triggered();
     void on_actionExit_triggered();
 };
 

@@ -19,11 +19,13 @@ public slots:
     bool read(QIODevice *device);
     void parsePropertyElement(const QDomElement &element);
 
-    void setModuleName(QString moduleName,QString moduleVersion,QString modulePath,QString moduleDesc);
+    void setModuleName(QString moduleName,QString moduleVersion,QString modulePath,
+                       QString moduleDesc, QString moduleType);
     QStringList getModuleName();
     QStringList getModuleVersion();
     QStringList getModulePath();
     QStringList getModuleDesc();
+    QStringList getModuleType();
 private:
     QDomDocument domDocument;
 
@@ -31,11 +33,13 @@ private:
     QString version;
     QString path;
     QString desc;
+    QString type;
 
     QStringList allModuleName;
     QStringList allModuleVersion;
     QStringList allModulePath;
     QStringList allModuleDesc;
+    QStringList allModuleType;
     void nodeClear();
 };
 

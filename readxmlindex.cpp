@@ -6,6 +6,7 @@ readXMLIndex::readXMLIndex(QObject *parent) :
     allModuleName.clear();
     allModuleVersion.clear();
     allModulePath.clear();
+    allModuleType.clear();
 }
 
 void readXMLIndex::setXML(QIODevice */*d*/)
@@ -17,6 +18,7 @@ void readXMLIndex::nodeClear()
     version.clear();
     path.clear();
     desc.clear();
+    type.clear();
 }
 
 bool readXMLIndex::read(QIODevice *device)
@@ -53,12 +55,10 @@ bool readXMLIndex::read(QIODevice *device)
         nodeClear();  //清理节点包含信息
         name = child.attribute("name");
         version = child.attribute("version");
-//        qDebug()<<"module name::"<<name;
-//        qDebug()<<"module version::"<<version;
         parsePropertyElement(child);
 
-        setModuleName(name,version,path,desc);
-        qDebug()<<name<<version<<path<<desc;
+        setModuleName(name,version,path,desc,type);
+        qDebug()<<"readIndexXML::"<<name<<version<<path<<desc<<type;
         child = child.nextSiblingElement("module");
     }
 
@@ -78,24 +78,27 @@ void readXMLIndex::parsePropertyElement(const QDomElement &element)
         else if (child.tagName() == "path")
         {
             path=child.text();
-//            qDebug()<<"moduleXMLpath:: "<<path;
         }
         else if (child.tagName() == "desc")
         {
             desc=child.text();
-//            qDebug()<<"module desc:: "<<desc;
+        }
+        else if (child.tagName() == "type")
+        {
+            type=child.text();
         }
         child = child.nextSiblingElement(); //循环
     }
 }
 
 void readXMLIndex::setModuleName(QString moduleName, QString moduleVersion,
-                                 QString modulePath, QString moduleDesc)
+                                 QString modulePath, QString moduleDesc, QString moduleType)
 {
     allModuleName.append(moduleName);
     allModuleVersion.append(moduleVersion);
     allModulePath.append(modulePath);
     allModuleDesc.append(moduleDesc);
+    allModuleType.append(moduleType);
 }
 
 QStringList readXMLIndex::getModuleName()
@@ -116,4 +119,9 @@ QStringList readXMLIndex::getModulePath()
 QStringList readXMLIndex::getModuleDesc()
 {
     return allModuleDesc;
+}
+
+QStringList readXMLIndex::getModuleType()
+{
+    return allModuleType;
 }

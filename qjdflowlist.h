@@ -2,36 +2,65 @@
 #define QJDFLOWLIST_H
 
 #include <QListWidget>
-#include <QDragEnterEvent>
-#include <QDropEvent>
+#include <QWidget>
+//#include <QDragEnterEvent>
+//#include <QDropEvent>
 class qjdFlowList : public QListWidget
 {
     Q_OBJECT
 public:
     explicit qjdFlowList(QWidget *parent = 0);
 
+    QHash<QListWidgetItem *, int> hashItem;  // item , stack index
+    int index;
 signals:
-    void sigDroped(QString);
-    void sigPressIndex(QString);
+//    void sigPressIndex(QString);
 
     void sigNewItemAdd();
     void sigItemChangePos();
     void sigJobXMLfileName(QString);
+    void sigAddFlowWidget(QString,QString);
 
+    void sigDeleteFlow(int);
+//    void sigUpFlow(int stackIndex);  // 需要前项和后项么？不需要，往上挪就是了
+//    void sigDownFlow(int stackIndex);
+    void sigChangeStackWidgetIndex(int);
+
+    void sigTurnOn(int);
+    void sigTurnOff(int);
+
+    void sigDrag(int stackIndex,int dragIndex,int allRow);  //插到原有这个位置的控件之前就可以了
 public slots:
-    void deleteFlow();
-    void addFlow(QString);
+    void addFlow(QString,QString);
     void creatJobXML();  // 需要人为的创建
+
+//    void upFlow();
+//    void downFlow();
+//    void delFlow();
+
 protected:
     void mousePressEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
-private:
+    void dropEvent(QDropEvent *event);
+    void dragEnterEvent(QDragEnterEvent *event);
 
-    QPoint startPos;
     QMenu *menu;
-    QAction *actDelete;
+    QAction *actTurn;
+    QAction *actDel;
+//    QAction *actTer;
+    void showContextMenu(QPoint );
+private slots:
+    void itemChangeSlot(int row);
 
+    void actTurnSlot();
+    void actDelSlot();
+private:
+    QList<QListWidgetItem *> itemList;
+
+    /// 拖拽
+//    void startDrag();
+    QPoint startPos;
 };
 
 #endif // QJDFLOWLIST_H

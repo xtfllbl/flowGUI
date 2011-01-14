@@ -10,13 +10,16 @@ class readXMLModule : public QObject
 public:
     explicit readXMLModule(QObject *parent = 0);
 
-signals:
-    // 发送信息，每当要添加东西，就显得非常不方便
+signals:    
+    // 发送节点信息
     void sigNodeData(QString property,QString desc,QString datatype,
-                     QString min,QString max,QString displaytype,QString displayvalue,
-                     QStringList optiontext,QStringList optionvalue,QString showvalue);
+                     QString min,QString max,QString displaytype,QString displaytext,QString displayvalue,
+                     QStringList optiontext,QStringList optionvalue,QString hidevalue,QString hidetype);
+    // 发送模块名称
     void sigModuleName(QString modulename);
     void sigReadFinish();
+
+
 public slots:
     void setXML(QIODevice *d);
     bool read(QIODevice *device);
@@ -39,8 +42,10 @@ private:
     QString max;
     QString min;
     QString displaytype;
+    QString displaytext;
     QString displayvalue;
-    QString showvalue;
+    QString hidevalue;
+    QString hidetype;
     QStringList optiontext;
     QStringList optionvalue;
 
