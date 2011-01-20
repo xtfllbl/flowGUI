@@ -7,11 +7,11 @@
 // 可以在当中加入箭头widget之类，比单个控件组合方便
 // 这个难道要实现拖拽？其实也不难实现
 
-class qjdModuleList : public QTreeWidget
+class QJDModuleList : public QTreeWidget
 {
     Q_OBJECT
 public:
-    explicit qjdModuleList(QWidget *parent = 0);
+    explicit QJDModuleList(QWidget *parent = 0);
 
     readXMLIndex *indexXML;
 signals:

@@ -9,7 +9,7 @@
 QT       += core gui
 QT += xml
 
-TARGET = argXML2gui
+TARGET = flowGui
 TEMPLATE = app
 
 
@@ -29,7 +29,10 @@ SOURCES += main.cpp\
     src/qjdcombobox.cpp \
     src/qjdspinbox.cpp \
     src/qjdgroupbox.cpp \
-    src/qjdprocess.cpp
+    src/qjdprocess.cpp \
+    qjdprocesswidget.cpp \
+    process/qjdproc.cpp \
+    process/qjdmisc.cpp
 
 HEADERS  += mainwindow.h \
     creatui.h \
@@ -46,7 +49,10 @@ HEADERS  += mainwindow.h \
     src/qjdcombobox.h \
     src/qjdspinbox.h \
     src/qjdgroupbox.h \
-    src/qjdprocess.h
+    src/qjdprocess.h \
+    qjdprocesswidget.h \
+    process/qjdproc.h \
+    process/config.h
 
 FORMS    += \
     mainwindow.ui

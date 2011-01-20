@@ -5,11 +5,11 @@
 #include <QWidget>
 //#include <QDragEnterEvent>
 //#include <QDropEvent>
-class qjdFlowList : public QListWidget
+class QJDFlowList : public QListWidget
 {
     Q_OBJECT
 public:
-    explicit qjdFlowList(QWidget *parent = 0);
+    explicit QJDFlowList(QWidget *parent = 0);
 
     QHash<QListWidgetItem *, int> hashItem;  // item , stack index
     int index;

@@ -103,36 +103,9 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
     {
         proLabel->setToolTip(desc);
     }
-    if(!datatype.isEmpty())  //允许输入的数据类型, 这个如何控制？regexp?
-    {
-        // －－－－－－－－－－－目前仅针对了lineEdit,其他仍然需要改进－－－－－－－－///
-        if(datatype=="string")
-        {
-            /// 数字，字母，符号都需要
-        }
-        if(datatype=="int")
-        {
-            QValidator* validator = new QIntValidator();  // this set int is enough
-            lineEdit->setValidator( validator );
 
-            if(!min.isNull() && !max.isNull())   // 如果是int，还要设置范围,float也要有取值范围
-            {
-                QValidator* validator = new QIntValidator( min.toInt(), max.toInt(), this );
-                lineEdit->setValidator( validator );
-            }
-        }
-        if(datatype=="float")
-        {
-            QValidator *validator = new QDoubleValidator(this);
-            lineEdit->setValidator( validator );
-
-            if(!min.isNull() && !max.isNull())   // float也有取值范围,无法使用正则表达式解决
-            {
-                QValidator* validator = new QDoubleValidator(min.toInt(), max.toInt(), 4, this );  // 小数点后面4位
-                lineEdit->setValidator( validator );
-            }
-        }
-    }
+    /// 单独做一个范围函数
+    setWidgetRange(displaytype,min,max);
 
     /// --------------------- 在此，需要和writejob联系起来，动态更改xml------------------ ///
     if(!displaytype.isEmpty())    // 创建控件的类型
@@ -321,6 +294,42 @@ void creatUI::creatHideRadioWidget(const QString property, const QString desc, c
 //            <hide type="radiobutton">YES</hide>
 //            <>
 //    </property>
+}
+
+void creatUI::setWidgetRange(QString displaytype, QString min, QString max)
+{
+    /// 那个控件如何传过来？
+//    if(!datatype.isEmpty())  //允许输入的数据类型, 这个如何控制？regexp?
+//    {
+//        // －－－－－－－－－－－目前仅针对了lineEdit,其他仍然需要改进－－－－－－－－///
+//        if(datatype=="string")
+//        {
+//            /// 数字，字母，符号都需要
+//        }
+//        if(datatype=="int")
+//        {
+//            QValidator* validator = new QIntValidator();  // this set int is enough
+//            lineEdit->setValidator( validator );
+
+//            if(!min.isNull() && !max.isNull())   // 如果是int，还要设置范围,float也要有取值范围
+//            {
+//                QValidator* validator = new QIntValidator( min.toInt(), max.toInt(), this );
+//                lineEdit->setValidator( validator );
+//            }
+//        }
+//        if(datatype=="float")
+//        {
+//            QValidator *validator = new QDoubleValidator(this);
+//            lineEdit->setValidator( validator );
+
+//            if(!min.isNull() && !max.isNull())   // float也有取值范围,无法使用正则表达式解决
+//            {
+//                QValidator* validator = new QDoubleValidator(min.toInt(), max.toInt(), 4, this );  // 小数点后面4位
+//                lineEdit->setValidator( validator );
+//            }
+//        }
+//    }
+
 }
 void creatUI::finishCreatUI()
 {    

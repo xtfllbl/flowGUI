@@ -2,7 +2,7 @@
 #include <QDebug>
 #include <QtGui>
 
-qjdModuleList::qjdModuleList(QWidget *parent) :
+QJDModuleList::QJDModuleList(QWidget *parent) :
     QTreeWidget(parent)
 {
     setFrameShape(QFrame::WinPanel);
@@ -21,7 +21,7 @@ qjdModuleList::qjdModuleList(QWidget *parent) :
     setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
-void qjdModuleList::analysisIndexXML()
+void QJDModuleList::analysisIndexXML()
 {
     /// ----------------------------解析索引----------------------------
     fileXMLIndex.setFileName("xml/index.xml");
@@ -29,7 +29,7 @@ void qjdModuleList::analysisIndexXML()
     indexXML->read(&fileXMLIndex);
 }
 
-void qjdModuleList::addModule()
+void QJDModuleList::addModule()
 {
     QStringList a,b,c,d,e;
     a=indexXML->getModuleName();
@@ -64,7 +64,7 @@ void qjdModuleList::addModule()
     }
 }
 
-void qjdModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
+void QJDModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
 {
     qDebug()<<item->text(col);  // 不想要的text也会有。。
 

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Flow GUI</string>
   </property>
   <widget class="QWidget" name="cw"/>
   <widget class="QMenuBar" name="menubar">
@@ -35,8 +35,16 @@
     </property>
     <addaction name="actionExcute"/>
    </widget>
+   <widget class="QMenu" name="menuTest">
+    <property name="title">
+     <string>Test</string>
+    </property>
+    <addaction name="actionExpand"/>
+    <addaction name="actionMini"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuExcute"/>
+   <addaction name="menuTest"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionExit">
@@ -47,6 +55,16 @@
   <action name="actionExcute">
    <property name="text">
     <string>Excute</string>
+   </property>
+  </action>
+  <action name="actionExpand">
+   <property name="text">
+    <string>Expand</string>
+   </property>
+  </action>
+  <action name="actionMini">
+   <property name="text">
+    <string>Mini</string>
    </property>
   </action>
  </widget>

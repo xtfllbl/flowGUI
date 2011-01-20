@@ -8,11 +8,11 @@
 #include "creatui.h"
 //#include "writejob.h"
 
-class qjdStackWidget : public QStackedWidget
+class QJDStackWidget : public QStackedWidget
 {
     Q_OBJECT
 public:
-    explicit qjdStackWidget(QWidget *parent = 0);
+    explicit QJDStackWidget(QWidget *parent = 0);
 //    QHash<QString, int> hashIndex; //没有使用
     QHash<creatUI *,int> hashCreat;  //将creat和index联系起来，找的到，还能删除？？？
     int stackIndex;

@@ -1,10 +1,9 @@
 #include "qjdstackwidget.h"
 
 // 在此widget中，拜访各种参数界面
-qjdStackWidget::qjdStackWidget(QWidget *parent) :
+QJDStackWidget::QJDStackWidget(QWidget *parent) :
     QStackedWidget(parent)
 {
-    resize(300,300);
     hashCreat.clear();
     stackIndex=0;
 //    hashIndex.clear();
@@ -12,7 +11,7 @@ qjdStackWidget::qjdStackWidget(QWidget *parent) :
     setFrameShadow(QFrame::Raised);
 }
 
-void qjdStackWidget::addFlowWidget(QString flowName, QString flowPath)
+void QJDStackWidget::addFlowWidget(QString flowName, QString flowPath)
 {
     qDebug()<<" qjdStackWidget::addFlowWidget";
     creatWidget(flowName,flowPath);
@@ -20,7 +19,7 @@ void qjdStackWidget::addFlowWidget(QString flowName, QString flowPath)
 //    addWidget()
 }
 
-void qjdStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
+void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
 {
     qDebug()<<"qjdStackWidget::creatWidget";
     creat=new creatUI();   /// 一经创建，如何删除？？？
@@ -63,13 +62,13 @@ void qjdStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
     qDebug()<<"qjdStackWidget::creatWidget  out\n";
 }
 
-void qjdStackWidget::getJobXMLfileName(const QString fileName)
+void QJDStackWidget::getJobXMLfileName(const QString fileName)
 {
     qDebug()<<"module xml fileName arrived";
     jobFileName=fileName;
 }
 
-void qjdStackWidget::delFlowWidget(int stackIndex)
+void QJDStackWidget::delFlowWidget(int stackIndex)
 {
     qDebug()<<"delFlowWidget";
     creatUI *delCreat=hashCreat.key(stackIndex);  // 找出那个creat
@@ -91,21 +90,21 @@ void qjdStackWidget::delFlowWidget(int stackIndex)
 //    downCreat->downJob();
 //}
 
-void qjdStackWidget::turnOnWidget(int stackIndex)
+void QJDStackWidget::turnOnWidget(int stackIndex)
 {
     qDebug()<<"turn on";
     creatUI *onCreat=hashCreat.key(stackIndex);
     onCreat->turnOnJob();
 }
 
-void qjdStackWidget::turnOffWidget(int stackIndex)
+void QJDStackWidget::turnOffWidget(int stackIndex)
 {
     qDebug()<<"turn off";
     creatUI *offCreat=hashCreat.key(stackIndex);
     offCreat->turnOffJob();
 }
 
-void qjdStackWidget::dragWidget(int stackIndex, int currentIndex,int allRow)
+void QJDStackWidget::dragWidget(int stackIndex, int currentIndex,int allRow)
 {
     qDebug()<<"dragWidget";
     creatUI *dragCreat=hashCreat.key(stackIndex);

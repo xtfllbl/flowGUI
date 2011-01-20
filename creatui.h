@@ -29,6 +29,7 @@ private:
     QString MODULEID;
 
     QString setRandString(QString & randString);
+    void setWidgetRange(QString displaytype,QString min,QString max);
 
     void resizeEvent(QResizeEvent *);
 //    QString setRandString(QString & randString);

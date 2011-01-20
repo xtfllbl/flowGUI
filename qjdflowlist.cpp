@@ -7,7 +7,7 @@
 #include <QDrag>
 
 /// 创建的同时是否要创建jobxml
-qjdFlowList::qjdFlowList(QWidget *parent) :
+QJDFlowList::QJDFlowList(QWidget *parent) :
         QListWidget(parent)
 {
     setFrameShape(QFrame::WinPanel);
@@ -43,7 +43,7 @@ qjdFlowList::qjdFlowList(QWidget *parent) :
     this->setContextMenuPolicy(Qt::CustomContextMenu);
 }
 
-void qjdFlowList::mousePressEvent(QMouseEvent *event)
+void QJDFlowList::mousePressEvent(QMouseEvent *event)
 {
     qDebug()<<"mouse press index"<<currentIndex().row();  //删除完添加row为-1 ???
     QListWidget::mousePressEvent(event);
@@ -75,13 +75,12 @@ void qjdFlowList::mousePressEvent(QMouseEvent *event)
     if(event->button()==Qt::RightButton  && currentIndex().row()>=0)
     {
         qDebug()<<"right mouse press";
-        QListWidgetItem *item=currentItem();
         // 需要提供右键菜单
         showContextMenu(event->pos());
     }
 }
 
-void qjdFlowList::mouseMoveEvent(QMouseEvent *event)
+void QJDFlowList::mouseMoveEvent(QMouseEvent *event)
 {
     QListWidget::mouseMoveEvent(event);
 }
@@ -105,7 +104,7 @@ void qjdFlowList::mouseMoveEvent(QMouseEvent *event)
 //    }
 //}
 
-void qjdFlowList::addFlow(const QString flowName, const QString flowPath)
+void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
 {
     qDebug()<<"flowList addFlow~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     QListWidgetItem *item=new QListWidgetItem;
@@ -122,7 +121,7 @@ void qjdFlowList::addFlow(const QString flowName, const QString flowPath)
     emit sigAddFlowWidget(flowName, flowPath);
 }
 
-void qjdFlowList::creatJobXML()
+void QJDFlowList::creatJobXML()
 {
     QFile file;
     QString fileName;
@@ -205,7 +204,7 @@ void qjdFlowList::creatJobXML()
 
 
 // 界面成功链接，xml 如何做呢？
-void qjdFlowList::itemChangeSlot(int row)
+void QJDFlowList::itemChangeSlot(int row)
 {
     QListWidgetItem *item=currentItem();
     emit sigChangeStackWidgetIndex(hashItem.value(item));
@@ -214,14 +213,14 @@ void qjdFlowList::itemChangeSlot(int row)
 /// ---------------------------------------------------------------------------///
 /// --------------------------- 拖拽 -----------------------------------------///
 // 目前自认为鼠标那部分完成了
-void qjdFlowList::dragEnterEvent(QDragEnterEvent *event)
+void QJDFlowList::dragEnterEvent(QDragEnterEvent *event)
 {
     qDebug()<<"dragEnterEvent";
     QListWidget::dragEnterEvent(event);
 }
 
 
-void qjdFlowList::dropEvent(QDropEvent *event)
+void QJDFlowList::dropEvent(QDropEvent *event)
 {
     qDebug()<<"dropEvent";
     QListWidget::dropEvent(event);
@@ -237,7 +236,7 @@ void qjdFlowList::dropEvent(QDropEvent *event)
 }
 
 /// 右键菜单
-void qjdFlowList::showContextMenu(QPoint )
+void QJDFlowList::showContextMenu(QPoint )
 {
     // 显示在鼠标边上呢, 还是显示在item旁边
     qDebug()<<"showContextMenu";
@@ -247,7 +246,7 @@ void qjdFlowList::showContextMenu(QPoint )
     }
 }
 
-void qjdFlowList::actTurnSlot()
+void QJDFlowList::actTurnSlot()
 {
     qDebug()<<"actTurnSlot";
     /// 照抄中键功能
@@ -273,7 +272,7 @@ void qjdFlowList::actTurnSlot()
     }
 }
 
-void qjdFlowList::actDelSlot()
+void QJDFlowList::actDelSlot()
 {
     qDebug()<<"actDelSlot";
     QListWidgetItem *delItem = this->takeItem(currentRow());
