@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ui>
+<ui version="1.0">
+<module name="Data Input" version="1.0">
+<property name="infilename">
+	<desc>data in file name</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">/home/lub/data/0304-8bit</displaytype>
+</property>
+</module>
+
+<module name="FirstBreakAutoPick" version="1.0">
+<property name="jdtpath">
+	<desc>program path</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit"></displaytype>
+</property>
+<property name="minvelo">
+	<desc>minimum V</desc>
+<datatype>int</datatype>
+<displaytype name="lineedit">1500</displaytype>
+</property>
+<property name="maxvel">
+	<desc>maximum V</desc>
+<datatype>int</datatype>
+<displaytype name="lineedit">2000</displaytype>
+</property>
+<property name="tw">
+	<desc>time window width</desc>
+	<datatype>int</datatype>
+	<displaytype name="lineedit">40</displaytype>
+</property>
+<property name="smooth">
+	<desc>should be smooth?</desc>
+	<displaytype name="radiobutton">
+		<option value="NO">1</option>
+		<option value="YES">0</option>
+	</displaytype>
+</property>
+<property name="pickFileName">
+	<desc>pick file path and name </desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">/home/lub/program/qt/flow/pick1.pick</displaytype>
+</property>
+</module>
+
+<module name="ReSample" version="1.0">
+<property name="resamplerate">
+	<desc>resamplerate number</desc>
+	<datatype>int</datatype>
+	<displaytype name="lineedit">0</displaytype>
+</property>
+</module>
+
+</ui>
+

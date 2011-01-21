@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE index>
+<index version="1.0">
+<modulegroup name="module group 1">
+
+<module name="xtf" version="1.0">
+    <path>xml/xtf.xml</path>
+    <desc>This is a xtf module.</desc>
+    <type>Data IO</type>
+</module>
+
+<module name="xtf2" version="1.0">
+    <path>xml/xtf2.xml</path>
+    <desc>This is a xtf2 module.</desc>
+        <type>Data Process</type>
+</module>
+
+<module name="ReSample" version="1.0">
+    <path>xml/resample.xml</path>
+    <desc>This is a resample module.</desc>
+    <type>Data IO</type>
+</module>
+
+<module name="FirstBreakAutoPick" version="1.0">
+    <path>xml/FirstBreakAutoPick.xml</path>
+    <desc>This is a auto pick module. </desc>
+    <type>Data Process</type>
+</module>
+
+<module name="Data Input" version="1.0">
+    <path>xml/datain.xml</path>
+    <desc>This is a data input module. </desc>
+     <type>Data IO</type>
+</module>
+
+<module name="AbnormalTraceScan" version="1.0">
+    <path>xml/AbnormalTraceScan.xml</path>
+    <desc>This is a AbnormalTraceScan module. </desc>
+    <type>Data Process</type>
+</module>
+
+<module name="ShotAttributesExtraction" version="1.0">
+    <path>xml/ShotAttributesExtraction.xml</path>
+    <desc>This is a ShotAttributesExtraction module. </desc>
+    <type>Data Process</type>
+</module>
+
+</modulegroup>
+</index>

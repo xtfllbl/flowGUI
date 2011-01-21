@@ -64,6 +64,8 @@ QJDProcessWidget::QJDProcessWidget(QWidget *parent) :
     this->setSortingEnabled(false);
     this->setWordWrap(true);
     this->setCornerButtonEnabled(true);
+
+    this->resizeColumnsToContents();
 }
 
 

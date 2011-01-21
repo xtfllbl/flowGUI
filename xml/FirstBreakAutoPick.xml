@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ui>
+<ui version="1.0">
+<module name="FirstBreakAutoPick" version="1.0">
+<property name="jdthpath">
+	<desc>jdthpath</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">null</displaytype>
+</property>
+<property name="minvelo">
+	<desc>minvelo</desc>
+	<datatype>int</datatype>
+	<displaytype name="spinbox">1500</displaytype>
+</property>
+<property name="maxvel">
+	<desc>maxvel</desc>
+	<datatype>int</datatype>
+	<displaytype name="spinbox">2000</displaytype>
+</property>
+<property name="tw">
+	<desc>tw</desc>
+	<datatype>int</datatype>
+	<displaytype name="spinbox">50</displaytype>
+</property>
+<property name="smooth">
+	<desc>smooth</desc>
+	<datatype>bool</datatype>
+	<displaytype name="checkbox">checked</displaytype>
+</property>
+<property name="isoutput">
+	<desc>isoutput</desc>
+	<datatype>bool</datatype>
+	<displaytype name="checkbox">checked</displaytype>
+</property>
+<property name="pickFileName">
+	<desc>pickFileName</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">/home/lub/program/qt/flow/pick2.pick</displaytype>
+</property>
+</module>
+</ui>

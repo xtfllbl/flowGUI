@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE index>
+<index version="1.0">
+<modulegroup name="module group 1">
+
+<module name="Module1" version="1.0">
+     <path>/home/xtf/xml/xtf.xml</path>
+     <desc>This is module1. The first module.</desc>
+</module>
+
+<module name="Module2" version="1.0">
+    <path>/home/xtf/xml/xtf2.xml</path>
+    <desc>This is module2. The second module.</desc>
+</module>
+
+<module name="ReSample" version="1.0">
+    <path>/home/xtf/xml/resample.xml</path>
+    <desc>This is a resample module.</desc>
+</module>
+
+<module name="FirstBreakAutoPick" version="1.0">
+    <path>/home/xtf/xml/FirstBreakAutoPick.xml</path>
+    <desc>This is a auto pick module. </desc>
+</module>
+
+<module name="Data Input" version="1.0">
+    <path>/home/xtf/xml/datain.xml</path>
+    <desc>This is a data input module. </desc>
+</module>
+
+</modulegroup>
+</index>

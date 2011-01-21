@@ -78,6 +78,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     processWidget=new QJDProcessWidget();
     processWidget->setMaximumHeight(1);  //留一条缝隙
+    processWidget->horizontalHeader()->setVisible(true);
+    processWidget->verticalHeader()->setVisible(false);
+    processWidget->horizontalHeader()->setStretchLastSection(true);
     allGridLayout->addWidget(processWidget,1,0,1,1);
     /// -------------------------------------------------signal && slot ------------------------------------------///
     jlt=new creatJLT();  //无关界面的一个类
@@ -223,26 +226,26 @@ void MainWindow::small()
 
 void MainWindow::setProcData()
 {
-    model = new QStandardItemModel(0, 18, this);
+    model = new QStandardItemModel(0, 7, this);
 
     model->setHeaderData(0, Qt::Horizontal, tr("pid"));
     model->setHeaderData(1, Qt::Horizontal, tr("process name"));
-    model->setHeaderData(2, Qt::Horizontal, tr("state"));
-    model->setHeaderData(3, Qt::Horizontal, tr("nice"));
-    model->setHeaderData(4, Qt::Horizontal, tr("starttime"));
-    model->setHeaderData(5, Qt::Horizontal, tr("wchan"));
-    model->setHeaderData(6, Qt::Horizontal, tr("cpu"));
-    model->setHeaderData(7, Qt::Horizontal, tr("Memory"));
-    model->setHeaderData(8, Qt::Horizontal, tr("memory(%)"));
-    model->setHeaderData(9, Qt::Horizontal, tr("sleep(%)"));
-    model->setHeaderData(10, Qt::Horizontal, tr("stack(K)"));
-    model->setHeaderData(11, Qt::Horizontal, tr("IO_READ"));
-    model->setHeaderData(12, Qt::Horizontal, tr("IO_WRITE"));
-    model->setHeaderData(13, Qt::Horizontal, tr("% CPU"));
-    model->setHeaderData(14, Qt::Horizontal, tr("% WCPU"));
-    model->setHeaderData(15, Qt::Horizontal, tr("COMMAND LINE"));
-    model->setHeaderData(16, Qt::Horizontal, tr("UID"));
-    model->setHeaderData(17, Qt::Horizontal, tr("USERNAME"));
+//    model->setHeaderData(2, Qt::Horizontal, tr("state"));
+//    model->setHeaderData(2, Qt::Horizontal, tr("nice"));
+    model->setHeaderData(2, Qt::Horizontal, tr("starttime"));
+//    model->setHeaderData(5, Qt::Horizontal, tr("wchan"));//
+//    model->setHeaderData(4, Qt::Horizontal, tr("cpu"));
+    model->setHeaderData(3, Qt::Horizontal, tr("Memory"));
+//    model->setHeaderData(8, Qt::Horizontal, tr("memory(%)"));
+//    model->setHeaderData(9, Qt::Horizontal, tr("sleep(%)"));
+//    model->setHeaderData(10, Qt::Horizontal, tr("stack(K)"));
+//    model->setHeaderData(6, Qt::Horizontal, tr("IO_READ"));
+//    model->setHeaderData(12, Qt::Horizontal, tr("IO_WRITE"));
+    model->setHeaderData(4, Qt::Horizontal, tr("% CPU"));
+//    model->setHeaderData(14, Qt::Horizontal, tr("% WCPU"));
+    model->setHeaderData(5, Qt::Horizontal, tr("COMMAND LINE"));
+//    model->setHeaderData(16, Qt::Horizontal, tr("UID"));
+    model->setHeaderData(6, Qt::Horizontal, tr("USERNAME"));
 
     // 向表格中输入数据
     /// 在此筛选,重要循环
@@ -250,7 +253,7 @@ void MainWindow::setProcData()
     for(int i=0;i<proc->pidVector.size();i++)
     {
         aCmd=proc->cmdVector.at(i);     // 通过cmd对过滤器作出反应
-        if(aCmd=="MainFlow")
+        if(aCmd=="gcalctool")
         {
             // go on
             aPid=QString::number(proc->pidVector.at(i),10);
@@ -292,41 +295,41 @@ void MainWindow::setProcData()
 
             itemPid=new QStandardItem(aPid);
             itemCmd=new QStandardItem(aCmd);
-            itemStat=new QStandardItem(aStat);
-            itemNice=new QStandardItem(aNice);
+//            itemStat=new QStandardItem(aStat);
+//            itemNice=new QStandardItem(aNice);
             itemStartTime=new QStandardItem(aStartTime);
-            itemWchan=new QStandardItem(aWchan);
-            itemWhichCpu=new QStandardItem(aWhichCpu);
+//            itemWchan=new QStandardItem(aWchan);
+//            itemWhichCpu=new QStandardItem(aWhichCpu);
             itemMem=new QStandardItem(aMem);
-            itemPmem=new QStandardItem(aPmem);
-            itemSleepAvg=new QStandardItem(aSleepAvg);
-            itemStack=new QStandardItem(aStack);
-            itemIoread=new QStandardItem(aIoread);
-            itemIowrite=new QStandardItem(aIowrite);
+//            itemPmem=new QStandardItem(aPmem);
+//            itemSleepAvg=new QStandardItem(aSleepAvg);
+//            itemStack=new QStandardItem(aStack);
+//            itemIoread=new QStandardItem(aIoread);
+//            itemIowrite=new QStandardItem(aIowrite);
             itemPcpu=new QStandardItem(aPcpu);
-            itemWcpu=new QStandardItem(aWcpu);
+//            itemWcpu=new QStandardItem(aWcpu);
             itemCmdLine=new QStandardItem(aCmdLine);
-            itemUid=new QStandardItem(aUid);
+//            itemUid=new QStandardItem(aUid);
             itemUsrName=new QStandardItem(aUsrName);
 
             model->setItem(countRow,0,itemPid);
             model->setItem(countRow,1,itemCmd);
-            model->setItem(countRow,2,itemStat);
-            model->setItem(countRow,3,itemNice);
-            model->setItem(countRow,4,itemStartTime);
-            model->setItem(countRow,5,itemWchan);
-            model->setItem(countRow,6,itemWhichCpu);
-            model->setItem(countRow,7,itemMem);
-            model->setItem(countRow,8,itemPmem);
-            model->setItem(countRow,9,itemSleepAvg);
-            model->setItem(countRow,10,itemStack);
-            model->setItem(countRow,11,itemIoread);
-            model->setItem(countRow,12,itemIowrite);
-            model->setItem(countRow,13,itemPcpu);
-            model->setItem(countRow,14,itemWcpu);
-            model->setItem(countRow,15,itemCmdLine);
-            model->setItem(countRow,16,itemUid);
-            model->setItem(countRow,17,itemUsrName);
+//            model->setItem(countRow,2,itemStat);
+//            model->setItem(countRow,2,itemNice);
+            model->setItem(countRow,2,itemStartTime);
+//            model->setItem(countRow,5,itemWchan);
+//            model->setItem(countRow,4,itemWhichCpu);
+            model->setItem(countRow,3,itemMem);
+//            model->setItem(countRow,8,itemPmem);
+//            model->setItem(countRow,9,itemSleepAvg);
+//            model->setItem(countRow,10,itemStack);
+//            model->setItem(countRow,11,itemIoread);
+//            model->setItem(countRow,12,itemIowrite);
+            model->setItem(countRow,4,itemPcpu);
+//            model->setItem(countRow,14,itemWcpu);
+            model->setItem(countRow,5,itemCmdLine);
+//            model->setItem(countRow,16,itemUid);
+            model->setItem(countRow,6,itemUsrName);
 
             countRow++;
         }
@@ -343,9 +346,7 @@ void MainWindow::setProcData()
         }
     }
     processWidget->setModel(model);
-    processWidget->horizontalHeader()->setVisible(true);
-    processWidget->verticalHeader()->setVisible(false);
-    processWidget->resizeColumnsToContents();
+
     processWidget->setCurrentIndex(processWidget->model()->index(selectRow,0));
 
 }
