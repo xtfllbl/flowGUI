@@ -81,7 +81,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
                            const QStringList optiontext, const QStringList optionvalue)
 {
     QHBoxLayout *normalLayout=new QHBoxLayout();
-    qDebug()<<"\n creatNormalWidget";
+    qDebug()<<"\ncreatUI:: creatNormalWidget";
     QLabel *proLabel=new QLabel;
 
     /// 带id
@@ -119,7 +119,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
         {
             lineEdit->setMinimumWidth(200);
             lineEdit->setText(displayvalue);
-            qDebug()<<"lineedit id::"<<lineEdit->id();
+//            qDebug()<<"lineedit id::"<<lineEdit->id();
             connect(lineEdit,SIGNAL(sigLineEditChanged(QString,QString)),job,SLOT(lineEditChanged(QString,QString)));
             id=lineEdit->id();
             normalLayout->addWidget(lineEdit);
@@ -135,7 +135,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
             {
                 checkBox->setChecked(true);
             }
-            qDebug()<<"checkbox id::"<<checkBox->id();
+//            qDebug()<<"checkbox id::"<<checkBox->id();
             connect(checkBox,SIGNAL(sigStateChanged(QString,QString)),job,SLOT(checkBoxChanged(QString,QString)));
             id=checkBox->id();
             normalLayout->addWidget(checkBox);
@@ -145,13 +145,13 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
         /// ------------------------------------combobox-------------------------------//
         if(displaytype=="combobox")
         {
-            qDebug()<<optionvalue<<optiontext;
+//            qDebug()<<optionvalue<<optiontext;
             comboBox->setMinimumWidth(200);
             for(int i=0;i<optionvalue.size();i++)
             {
                 comboBox->addItem(optiontext[i]);
             }
-            qDebug()<<"combobox id::"<<comboBox->id();
+//            qDebug()<<"combobox id::"<<comboBox->id();
             connect(comboBox,SIGNAL(sigIndexChanged(QString,QString)),job,SLOT(comboBoxChanged(QString,QString)));
             id=comboBox->id();
             normalLayout->addWidget(comboBox);
@@ -160,7 +160,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
         /// ------------------------------------filecombobox-------------------------------//
         if(displaytype=="filecombobox")
         {
-            qDebug()<<optionvalue<<optiontext;  // /home/xtf     path
+//            qDebug()<<optionvalue<<optiontext;  // /home/xtf     path
             fileComboBox->setMinimumWidth(200);
             //遍历optionvalue，然后添加到comboBox当中去
             QDir dir;
@@ -173,12 +173,12 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
             for (int i = 0; i < list.size(); ++i)
             {
                 QFileInfo fileInfo = list.at(i);
-                qDebug()<< qPrintable(QString("%1 %2").arg(fileInfo.size(), 10)
-                                      .arg(fileInfo.fileName()));
+//                qDebug()<< qPrintable(QString("%1 %2").arg(fileInfo.size(), 10)
+//                                      .arg(fileInfo.fileName()));
                 fileComboBox->addItem(fileInfo.fileName());
             }
 
-            qDebug()<<"fileComboBox id::"<<fileComboBox->id();
+//            qDebug()<<"fileComboBox id::"<<fileComboBox->id();
             connect(fileComboBox,SIGNAL(sigIndexChanged(QString,QString)),job,SLOT(comboBoxChanged(QString,QString)));
             id=fileComboBox->id();
             normalLayout->addWidget(fileComboBox);
@@ -190,7 +190,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
         {
             spinBox->setMinimumWidth(200);
             spinBox->setValue(displayvalue.toInt());
-            qDebug()<<"spinBox id::"<<spinBox->id();
+//            qDebug()<<"spinBox id::"<<spinBox->id();
             connect(spinBox,SIGNAL(sigValueChanged(QString,QString)),job,SLOT(spinBoxChanged(QString,QString)));
             id=spinBox->id();
             normalLayout->addWidget(spinBox);
@@ -209,7 +209,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
                 radio=new QJDRadioButton();  // 因为需要很多，所以一个是不够的
                 radio->setOtherID(groupBox->id());
                 radioIDList.append(radio->id());
-                qDebug()<<"radio id::"<<radio->id()<<groupBox->id();
+//                qDebug()<<"radio id::"<<radio->id()<<groupBox->id();
                 radio->setText(optiontext.at(i));
 
                 if(optionvalue[i]=="checked")
@@ -256,7 +256,7 @@ void creatUI::creatHideCheckWidget(const QString property, const QString desc, c
 {
     /// --------------可以有check和radio两种隐藏形式------------///
     // 形式多样，有待考虑
-    qDebug()<<"\n creatHideCheckWidget"<<displaytext;
+//    qDebug()<<"\n creatHideCheckWidget"<<displaytext;
     /// 使用groupbox统一考虑
     QLabel *proLabel=new QLabel;
     QJDLineEdit *lineEdit=new QJDLineEdit;
@@ -314,10 +314,10 @@ void creatUI::creatHideRadioWidget(const QString property, const QString desc, c
                                    const QString displayvalue,
                                    const QStringList optiontext, const QStringList optionvalue, QString showvalue)
 {
-    qDebug()<<"\n creatHideRadioWidget:: 目前暂时不考虑";
+//    qDebug()<<"\n creatHideRadioWidget:: 目前暂时不考虑";
     /// 如何设计radio部分的隐藏
-    qDebug()<<property<<desc<<datatype<<min<<max<<displaytype<<displaytext<<displayvalue
-            <<optiontext<<optionvalue<<showvalue;
+//    qDebug()<<property<<desc<<datatype<<min<<max<<displaytype<<displaytext<<displayvalue
+//            <<optiontext<<optionvalue<<showvalue;
 //    <property name="testshow3">
 //            <desc>this is a hide example</desc>
 //            <datatype>string</datatype>
@@ -375,7 +375,7 @@ void creatUI::finishCreatUI()
 
 void creatUI::resizeEvent(QResizeEvent *)
 {
-    qDebug()<<"creatui ::"<<this->size();
+//    qDebug()<<"creatui ::"<<this->size();
 }
 
 void creatUI::setJobFileName(const QString fileName)

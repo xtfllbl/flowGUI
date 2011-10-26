@@ -16,7 +16,7 @@ creatJLT::creatJLT(QObject *parent) :
 
 bool creatJLT::setXMLJobListFileName(const QString fileName)
 {
-    qDebug()<<"set excute file name"<<fileName;
+//    qDebug()<<"set excute file name"<<fileName;
     xmlFileName=fileName;
     return true;
 }
@@ -72,7 +72,7 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
     }
 
     QDomElement moduleNameEle = root.firstChildElement("Module");
-    qDebug()<<moduleNameEle.attribute("name"); // 这是模块名称,需要多次读取
+//    qDebug()<<moduleNameEle.attribute("name"); // 这是模块名称,需要多次读取
 
     while (!moduleNameEle.isNull())
     {
@@ -93,7 +93,7 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
 
 void creatJLT::startRun()
 {
-    qDebug()<<"start Run";
+//    qDebug()<<"start Run";
     if(hashJob.values().size()==4)
     {
         qDebug()<<"No more than 4 process in one time.";
@@ -144,12 +144,12 @@ void creatJLT::RunProcess()
     JDP->savePID();
 
     hashJob.insert(JDP->getPID(),processCount);  // 这个保存了pid和jobX之间的关系, 也就是说其他程序运行不会被记录在案
-    qDebug()<<"hashJob:: "<<hashJob;   //如何传递给processWidget呢？
+//    qDebug()<<"hashJob:: "<<hashJob;   //如何传递给processWidget呢？
 }
 
 void creatJLT::processFinished(int pid, int sig, QProcess::ExitStatus exitStatus)
 {
-    qDebug()<<pid<<sig<<exitStatus;
+//    qDebug()<<pid<<sig<<exitStatus;
     hashJob.remove(pid);
 }
 

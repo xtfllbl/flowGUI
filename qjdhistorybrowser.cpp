@@ -51,6 +51,7 @@ QJDHistoryBrowser::QJDHistoryBrowser(QWidget *parent) :
 /// 这个需要定时刷新的，使用model是否会好点
 void QJDHistoryBrowser::setLogFile()
 {
+    /// 最好界面上哪里转一圈....
     qDebug()<<"Refreashing History Log ...";
     hashFilePath.clear();  //刷新清除
 

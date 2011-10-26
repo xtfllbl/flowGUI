@@ -47,7 +47,7 @@ void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath, i
     fileXML.close();
     /// ------------------------------------------------------------------
     /// 这个Hash同样需要改变,需要和hashItem保持相同的改变顺序
-    qDebug()<<"value::"<<value<<"stackIndex::"<<stackIndex;
+//    qDebug()<<"value::"<<value<<"stackIndex::"<<stackIndex;
     if(value==stackIndex)
     {
         hashCreat.insert(creat,stackIndex); //确保creat和index之间的关系不丢失
@@ -63,7 +63,7 @@ void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath, i
     QScrollArea *area=new QScrollArea;
     area->setWidget(creat);
     addWidget(area);
-    qDebug()<<"index of creat::"<<this->indexOf(creat);
+//    qDebug()<<"index of creat::"<<this->indexOf(creat);
     creat->setIndex(this->indexOf(creat));
     setCurrentWidget(area);  //变成需要设置area了..
 
@@ -85,7 +85,7 @@ void QJDStackWidget::insertHash(int value, creatUI *saveCreat)
 
 void QJDStackWidget::getJobXMLfileName(const QString fileName)
 {
-    qDebug()<<"module xml fileName arrived";
+//    qDebug()<<"module xml fileName arrived";
     jobFileName=fileName;
 }
 

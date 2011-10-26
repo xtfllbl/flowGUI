@@ -23,7 +23,6 @@ void readXMLIndex::nodeClear()
 
 bool readXMLIndex::read(QIODevice *device)
 {
-    qDebug()<<"read";
     QString errorStr;
     int errorLine;
     int errorColumn;
@@ -58,7 +57,7 @@ bool readXMLIndex::read(QIODevice *device)
         parsePropertyElement(child);
 
         setModuleName(name,version,path,desc,type);
-        qDebug()<<"readIndexXML::"<<name<<version<<path<<desc<<type;
+//        qDebug()<<"readIndexXML::"<<name<<version<<path<<desc<<type;
         child = child.nextSiblingElement("module");
     }
 

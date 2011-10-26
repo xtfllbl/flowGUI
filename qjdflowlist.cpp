@@ -62,12 +62,12 @@ void QJDFlowList::mousePressEvent(QMouseEvent *event)
     /// 这个currentIndex.row很有问题,有一次点击的延迟?????
     hasMousePressed=true;
     QListWidget::mousePressEvent(event);
-    qDebug()<<"mouse press index"<<currentIndex().row();  //删除完添加row为-1 ???
+//    qDebug()<<"mouse press index"<<currentIndex().row();  //删除完添加row为-1 ???
 
     mousePressIndex=currentIndex().row();
     if(event->button()==Qt::MidButton  && currentIndex().row()>=0)
     {
-        qDebug()<<"middle mouse press";
+//        qDebug()<<"middle mouse press";
         // 设置相应的颜色边灰然后变蓝
         // 然后需要发送相应的信号到writejob当中去
         QListWidgetItem *item=currentItem();
@@ -91,7 +91,7 @@ void QJDFlowList::mousePressEvent(QMouseEvent *event)
 
     if(event->button()==Qt::RightButton  && currentIndex().row()>=0)
     {
-        qDebug()<<"right mouse press";
+//        qDebug()<<"right mouse press";
         // 需要提供右键菜单
         showContextMenu(event->pos());
     }
@@ -123,7 +123,7 @@ void QJDFlowList::mouseMoveEvent(QMouseEvent *event)
 
 void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
 {
-    qDebug()<<"flowList addFlow~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+//    qDebug()<<"flowList addFlow~~~~~~~~~~~~~~~~~~~~~~~~~~~";
     QListWidgetItem *item=new QListWidgetItem;
     item->setText(flowName);
     item->setTextColor(Qt::blue);
@@ -179,7 +179,7 @@ void QJDFlowList::creatJobXML()
     fileName.append(a.currentDateTime().toString("M-d_h_m_s"));
     //    fileName.append("1");
     fileName.append(".xml");
-    qDebug()<<fileName;
+//    qDebug()<<fileName;
 
     file.setFileName(fileName);
     if(!file.open(QFile::ReadWrite))
@@ -263,23 +263,23 @@ void QJDFlowList::itemChangeSlot(int /*row*/)
 // 目前自认为鼠标那部分完成了
 void QJDFlowList::dragEnterEvent(QDragEnterEvent *event)
 {
-    qDebug()<<"dragEnterEvent";
+    qDebug()<<"QJDFlowList::dragEnterEvent";
     QListWidget::dragEnterEvent(event);
 }
 
 
 void QJDFlowList::dropEvent(QDropEvent *event)
 {
-    qDebug()<<"dropEvent";
+    qDebug()<<"QJDFlowList::dropEvent";
     QListWidget::dropEvent(event);
 
     QListWidgetItem *dragItem = currentItem();
     qDebug()<<hashItem.value(dragItem)<<currentRow();
 
-    qDebug()<<"!!!!!!!!!drag!!!!!!!!!!";
+//    qDebug()<<"!!!!!!!!!drag!!!!!!!!!!";
     /// 以下传输的信号有问题, 准确的说是hash出了问题,拖拽后没有更新
     /// 那个hash应当以mouse拖拽完毕的index为准
-    qDebug()<<"beforemouse:"<<mousePressIndex<<"beforehash:"<<hashItem.value(dragItem)<<"now::"<<currentRow();
+//    qDebug()<<"beforemouse:"<<mousePressIndex<<"beforehash:"<<hashItem.value(dragItem)<<"now::"<<currentRow();
     emit sigDrag(hashItem.value(dragItem), currentRow(),this->count());
     resetHashValue(hashItem.value(dragItem), currentRow(), dragItem);
 
@@ -289,7 +289,7 @@ void QJDFlowList::dropEvent(QDropEvent *event)
 void QJDFlowList::resetHashValue(int before, int after,QListWidgetItem *saveItem)
 {
     // down
-    qDebug()<<"saveItem:"<<saveItem<<"after:"<<after;
+//    qDebug()<<"saveItem:"<<saveItem<<"after:"<<after;
     if(after-before>0)
     {
         QListWidgetItem *hashModuleName;
@@ -300,7 +300,7 @@ void QJDFlowList::resetHashValue(int before, int after,QListWidgetItem *saveItem
                     hashItem.value(hashModuleName)<=after &&
                     hashItem.value(hashModuleName)>=before)
             {
-                qDebug()<<"in~~";
+//                qDebug()<<"in~~";
                 hashItem.insert(hashModuleName,hashItem.value(hashModuleName)-1);
             }
         }
@@ -318,13 +318,13 @@ void QJDFlowList::resetHashValue(int before, int after,QListWidgetItem *saveItem
                     hashItem.value(hashModuleName)>=after &&
                     hashItem.value(hashModuleName)<=before)
             {
-                qDebug()<<"in~~";
+//                qDebug()<<"in~~";
                 hashItem.insert(hashModuleName,hashItem.value(hashModuleName)+1);
             }
         }
         hashItem.insert(saveItem,after);
     }
-    qDebug()<<"hashItem::"<<hashItem;
+//    qDebug()<<"hashItem::"<<hashItem;
 
 }
 
@@ -368,7 +368,7 @@ void QJDFlowList::actTurnSlot()
 
 void QJDFlowList::actDelSlot()
 {
-    qDebug()<<"actDelSlot";
+    qDebug()<<"QJDFlowList::actDelSlot";
     QListWidgetItem *delItem = this->takeItem(currentRow());
     emit sigDeleteFlow(hashItem.value(delItem));
 }

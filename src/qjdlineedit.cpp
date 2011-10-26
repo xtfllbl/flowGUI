@@ -37,12 +37,12 @@ void QJDLineEdit::emitEditFinished()
 {
     if(_boxID.isEmpty())
     {
-        qDebug()<<"普通lineedit改变";
+//        qDebug()<<"普通lineedit改变";
         emit sigLineEditChanged(this->text(),this->id());
     }
     if(!_boxID.isEmpty())
     {
-        qDebug()<<"隐藏lineedit改变";
+//        qDebug()<<"隐藏lineedit改变";
         emit sigLineEditChanged(this->text(),_boxID,this->id());
     }
 }

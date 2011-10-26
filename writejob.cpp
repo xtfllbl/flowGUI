@@ -12,7 +12,7 @@ writeJob::writeJob(QObject *parent) :
 
 void writeJob::setModuleName(const QString name, const QString id)
 {
-    qDebug()<<"module Name has been set";
+//    qDebug()<<"module Name has been set";
     moduleName=name;
     moduleID=id;
 }
@@ -20,7 +20,7 @@ void writeJob::setModuleName(const QString name, const QString id)
 void writeJob::setJobFileName(const QString fileName)
 {
     /// 传递过来文件名要比创建控件来的还要晚
-    qDebug()<<"writeJob::setJobFileName::"<<fileName;
+//    qDebug()<<"writeJob::setJobFileName::"<<fileName;
     jobFileName=fileName;
     isFileNameSet=true;
     initJob();  // 设置之后直接初始化
@@ -28,7 +28,7 @@ void writeJob::setJobFileName(const QString fileName)
 
 bool writeJob::initJob()
 {
-    qDebug()<<"start init ";
+//    qDebug()<<"start init ";
     // 先要知道which file
     if(isFileNameSet==true)
     {
@@ -61,7 +61,7 @@ bool writeJob::initJob()
 void writeJob::writeHead(QIODevice *file)
 {
     /// 头部采用简单方式写入，方便后续处理
-    qDebug()<<"writeHead----------------------------------------";
+//    qDebug()<<"writeHead----------------------------------------";
     QTextStream out(file);
     out<<"<?xml version='1.0' encoding='UTF-8'?>\n"
             <<"<!DOCTYPE job>\n"
@@ -73,7 +73,7 @@ void writeJob::writeHead(QIODevice *file)
 // 初始化
 bool writeJob::readJob()
 {
-    qDebug()<<"read";
+//    qDebug()<<"read";
     if(fileRead.isOpen())
         qDebug()<<"fileRead is already open";
     fileRead.setFileName(jobFileName);
@@ -114,7 +114,7 @@ bool writeJob::readJob()
 /// 分析完毕用来写入的函数
 bool writeJob::write()
 {
-    qDebug()<<"5.write xml";
+    qDebug()<<"writeJob::write xml";
     /// 写可以等模块分析完毕之后
     fileWrite.setFileName(jobFileName);
     if(!fileWrite.open(QFile::WriteOnly | QFile::Text))
@@ -133,7 +133,7 @@ bool writeJob::write()
 
 void writeJob::addModuleName(const QString name, const QString id)
 {
-    qDebug()<<"addModuleName";
+//    qDebug()<<"addModuleName";
     QDomElement root = doc.documentElement();
     qDebug()<<root.text();
     moduleEle =  doc.createElement("Module");
@@ -156,8 +156,8 @@ void writeJob::addNormalWidget(const QString property, const QString desc, const
                                const QStringList optionvalueList, const QString id, const QString boxID,
                                const QList<QString> radioIDList)
 {
-    qDebug()<<"writeJob::addNormalWidget::"<<  property<<   desc<<   datatype<<min<<   max<<   displaytype<<
-            displayvalue<<   optiontextList<<   optionvalueList<<id<<boxID<<radioIDList;
+//    qDebug()<<"writeJob::addNormalWidget::"<<  property<<   desc<<   datatype<<min<<   max<<   displaytype<<
+//            displayvalue<<   optiontextList<<   optionvalueList<<id<<boxID<<radioIDList;
 
     // 1.打开文件，分析文件，准备添加
     if(alreadyReadJob==false)
@@ -954,7 +954,7 @@ void writeJob::parsePropertyElement(QDomElement property, QString text, QString 
             qDebug()<<optionEle.attribute("value")<<optionEle.attribute("id")<<text<<id;
             if(optionEle.attribute("id")==id)   // checked
             {
-                qDebug()<<"checked";
+//                qDebug()<<"checked";
                 QDomElement newOptionEle = doc.createElement("option");
                 newOptionEle.setAttribute("value",optionEle.attribute("value"));
                 newOptionEle.setAttribute("id",optionEle.attribute("id"));
@@ -966,7 +966,7 @@ void writeJob::parsePropertyElement(QDomElement property, QString text, QString 
             }
             else
             {
-                qDebug()<<"unchecked";
+//                qDebug()<<"unchecked";
                 QDomElement newOptionEle = doc.createElement("option");
                 newOptionEle.setAttribute("value",optionEle.attribute("value"));
                 newOptionEle.setAttribute("id",optionEle.attribute("id"));
@@ -1107,7 +1107,7 @@ bool writeJob::resetThisJob(int upValue)
     if(fileRead.isOpen())
         qDebug()<<"writeJob::fileRead is already open";
     fileRead.setFileName(jobFileName);
-    qDebug()<<"writeJob::jobFileName::"<<jobFileName;
+//    qDebug()<<"writeJob::jobFileName::"<<jobFileName;
 
     if(!fileRead.open(QFile::ReadOnly | QFile::Text))
     {

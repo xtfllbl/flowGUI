@@ -375,7 +375,7 @@ void MainWindow::vectorClear()
 
 void MainWindow::processWidgetPressed(QModelIndex index)
 {
-    qDebug()<<"processWidgetPressed  ~~~";
+//    qDebug()<<"processWidgetPressed  ~~~";
     index = processWidget->indexAt(processWidget->viewport()->mapFromGlobal(QCursor::pos()));
     selectRow=index.row();
 
@@ -386,8 +386,8 @@ void MainWindow::processWidgetPressed(QModelIndex index)
 
 void MainWindow::processWidgetDoubleClicked(QModelIndex /*index*/)
 {
-    qDebug()<<"processWidgetDoubleClicked";   //会先触动press，再触动这里,所以已经有了selectRow,processID
-    qDebug()<<"job ::"<<saveHash.value(processID);  //返回了jobX, 然后调用显示就是了
+//    qDebug()<<"processWidgetDoubleClicked";   //会先触动press，再触动这里,所以已经有了selectRow,processID
+//    qDebug()<<"job ::"<<saveHash.value(processID);  //返回了jobX, 然后调用显示就是了
     if(textBrowser->isVisible()==false)
     {
         textBrowser->show();
@@ -459,7 +459,7 @@ void MainWindow::saveRow(int row, int)
 }
 void MainWindow::showHistoryLog()
 {
-    qDebug()<<"showHistoryLog";
+//    qDebug()<<"showHistoryLog";
     QString fileName;
     fileName=historyBrowser->hashFilePath.value(clickedRow);  //需要行号0.1.2.3
     textBrowser->openLog(fileName);  ///  这个文件路径哪里来

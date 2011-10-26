@@ -76,7 +76,7 @@ void QJDModuleList::addModule()
 
 void QJDModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
 {
-    qDebug()<<item->text(col);  // 不想要的text也会有。。
+//    qDebug()<<item->text(col);  // 不想要的text也会有。。
 
     QStringList a,c;
     a=indexXML->getModuleName();
