@@ -1,15 +1,17 @@
 #include "creatjlt.h"
 #include "src/qjdprocess.h"
 #include <QMessageBox>
+#include "src/qjdargu.h"
 
 creatJLT::creatJLT(QObject *parent) :
-    QObject(parent)
+        QObject(parent)
 {
     xmlFileName.clear();
     exFile.setFileName("joblist/ceshishuchu.txt");
     count=99;
     processCount=0;
     hashJob.clear();
+    //    hashPid.clear();
 }
 
 bool creatJLT::setXMLJobListFileName(const QString fileName)
@@ -39,7 +41,7 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
         textStream.setDevice(&exFile);
         textStream<<processCount<<"\n";
         textStream<<"/home/lub/program/qt/flow/MainFlow\n";
-        textStream<<"job";
+        textStream<<"log/job";   //日志目录及路径
         textStream<<processCount;
         textStream<<".log\n";
         textStream<<count;
@@ -89,60 +91,82 @@ bool creatJLT:: readXmlJobList(QIODevice *device)
     return true;
 }
 
- void creatJLT::startRun()
- {
-     qDebug()<<"start Run";
-     if(hashJob.values().size()==4)
-     {
-         qDebug()<<"No more than 4 process in one time.";
-//         QMessageBox::warning(this,"Not Allowed","No more than 4 process in one time.");
-         return;
-     }
+void creatJLT::startRun()
+{
+    qDebug()<<"start Run";
+    if(hashJob.values().size()==4)
+    {
+        qDebug()<<"No more than 4 process in one time.";
+        //         QMessageBox::warning(this,"Not Allowed","No more than 4 process in one time.");
+        return;
+    }
 
-     if(!hashJob.values().contains(4))
-         processCount=4;
-     if(!hashJob.values().contains(3))
-         processCount=3;
-     if(!hashJob.values().contains(2))
-         processCount=2;
-     if(!hashJob.values().contains(1))
-         processCount=1;
+    //     QString jobNumber;
+    if(!hashJob.values().contains(4))
+    {
+        processCount=4;
+        //         jobNumber="job4";
+    }
+    if(!hashJob.values().contains(3))
+    {
+        processCount=3;
+        //         jobNumber="job3";
+    }
+    if(!hashJob.values().contains(2))
+    {
+        processCount=2;
+        //         jobNumber="job2";
+    }
+    if(!hashJob.values().contains(1))
+    {
+        processCount=1;
+        //         jobNumber="job1";
+    }
+    /// 如何把processCount 和进程联系? Pid();
 
-     analysisJobXML();
-     RunProcess();
- }
- void creatJLT::RunProcess()
-  {
-      QStringList paralist;
-      paralist.append("joblist/ceshishuchu.txt");
+    analysisJobXML();
+    RunProcess();
+}
+void creatJLT::RunProcess()
+{
+    QJDArgu *argu=new QJDArgu;
+    QStringList paralist;
+    paralist.append("joblist/ceshishuchu.txt");
 
-      QJDProcess *JDP=new QJDProcess;
-      connect(JDP, SIGNAL(sigFinished(int,int,QProcess::ExitStatus)), this, SLOT(processFinished(int, int, QProcess::ExitStatus)));
-      JDP->start("MainFlow",paralist);
-      JDP->savePID();
-      hashJob.insert(JDP->getPID(),processCount);
-  }
+    /// --------------- 每执行一个，信息应当保存，直到被覆盖----------------///
+    QJDProcess *JDP=new QJDProcess;
+    connect(JDP, SIGNAL(sigFinished(int,int,QProcess::ExitStatus)), this, SLOT(processFinished(int, int, QProcess::ExitStatus)));
+    //JDP->start(argu->FlowProcess,paralist);
+    qDebug()<<"para  !!!"<<paralist;
+    /// JDP->start("MainFlow",paralist);
+    JDP->start("geany",paralist);
 
- void creatJLT::processFinished(int pid, int sig, QProcess::ExitStatus exitStatus)
-  {
-      qDebug()<<pid<<sig<<exitStatus;
-      hashJob.remove(pid);
-  }
+    JDP->savePID();
 
- /// 处理各个模块
- void creatJLT::parseModuleElement(QDomElement const& moduleNameEle)
- {
-     QDomElement child=moduleNameEle.firstChildElement("property");
+    hashJob.insert(JDP->getPID(),processCount);  // 这个保存了pid和jobX之间的关系, 也就是说其他程序运行不会被记录在案
+    qDebug()<<"hashJob:: "<<hashJob;   //如何传递给processWidget呢？
+}
 
-     while (!child.isNull())
-     {
-         QString name = child.attribute("name");  
-         parsePropertyElement(child);
-         child = child.nextSiblingElement("property");
-     }
- }
+void creatJLT::processFinished(int pid, int sig, QProcess::ExitStatus exitStatus)
+{
+    qDebug()<<pid<<sig<<exitStatus;
+    hashJob.remove(pid);
+}
 
- /// 处理各个属性
+/// 处理各个模块
+void creatJLT::parseModuleElement(QDomElement const& moduleNameEle)
+{
+    QDomElement child=moduleNameEle.firstChildElement("property");
+
+    while (!child.isNull())
+    {
+        QString name = child.attribute("name");
+        parsePropertyElement(child);
+        child = child.nextSiblingElement("property");
+    }
+}
+
+/// 处理各个属性
 void creatJLT::parsePropertyElement(QDomElement const& property)
 {
     // 需要考,考虑控件类型
@@ -187,6 +211,21 @@ void creatJLT::parsePropertyElement(QDomElement const& property)
             option=option.nextSiblingElement("option");
         }
     }
+    if(widgetType=="filecombobox")
+    {
+        /// 还要处理下
+        qDebug()<<"widgetType is filecombobox";
+        QDomElement option=displayType.firstChildElement("option");
+        while(!option.isNull())
+        {
+            //            if(option.text()=="checked")
+            //            {
+            qDebug()<<"combo write in as:: "<<property.attribute("name")<<option.attribute("value");
+            textStream<<property.attribute("name")<<"="<<option.attribute("value")<<";";
+            //            }
+            option=option.nextSiblingElement("option");
+        }
+    }
     if(widgetType=="radiobutton")
     {
         qDebug()<<"widgetType is radioButton";
@@ -201,5 +240,10 @@ void creatJLT::parsePropertyElement(QDomElement const& property)
             option=option.nextSiblingElement("option");
         }
     }
+}
+
+QHash<int,int> creatJLT::getJobHash()
+{
+    return hashJob;  //返回关系
 }
 

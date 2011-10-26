@@ -180,7 +180,7 @@ int  Procinfo::hashcmp(char *sbuf)
     if(statlen>sizeof(hashstr))
     {
         // some user reported 265byte.
-        printf("Qps BUG:  hashstr shortage statlen(%d) > hashstr(%ld)\n",statlen,sizeof(hashstr));
+        printf("BUG:  hashstr shortage statlen(%d) > hashstr(%ld)\n",statlen,sizeof(hashstr));
         abort();
     }
     else if(statlen==hashlen)

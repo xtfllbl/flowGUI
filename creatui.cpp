@@ -6,6 +6,8 @@
 #include "src/qjdradiobutton.h"
 #include "src/qjdspinbox.h"
 #include "src/qjdgroupbox.h"
+#include "src/qjdfilecombobox.h"
+#include <QDir>
 
 /// readxml->creatui->creatjoblist
 creatUI::creatUI(QWidget *parent) :
@@ -17,6 +19,7 @@ creatUI::creatUI(QWidget *parent) :
 
     job=new writeJob();    // 写入job，需要创建写xml步骤
     /// 如何判断flow的名称和
+
 }
 
 creatUI::~creatUI()
@@ -73,7 +76,7 @@ void creatUI::nodeData(const QString property, const QString desc, const QString
 }
 
 void creatUI::creatNormalWidget(const QString property, const QString desc, const QString datatype,
-                           const QString min, const QString max, const QString displaytype, const QString displaytext,
+                           const QString min, const QString max, const QString displaytype, const QString /*displaytext*/,
                            const QString displayvalue,
                            const QStringList optiontext, const QStringList optionvalue)
 {
@@ -85,6 +88,7 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
     QJDLineEdit *lineEdit=new QJDLineEdit;
     QJDCheckBox *checkBox=new QJDCheckBox;
     QJDComboBox *comboBox=new QJDComboBox;
+    QJDFileComboBox *fileComboBox=new QJDFileComboBox;
     QJDSpinBox *spinBox=new QJDSpinBox;
     QJDGroupBox *groupBox=new QJDGroupBox;
 
@@ -152,6 +156,33 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
             id=comboBox->id();
             normalLayout->addWidget(comboBox);
             widgetList.append(comboBox);
+        }
+        /// ------------------------------------filecombobox-------------------------------//
+        if(displaytype=="filecombobox")
+        {
+            qDebug()<<optionvalue<<optiontext;  // /home/xtf     path
+            fileComboBox->setMinimumWidth(200);
+            //遍历optionvalue，然后添加到comboBox当中去
+            QDir dir;
+            dir.setPath(optionvalue.at(0));
+            dir.setFilter(QDir::Files | QDir::NoSymLinks);
+//            dir.setSorting(QDir::Size | QDir::Reversed);
+
+            QFileInfoList list = dir.entryInfoList();
+            fileComboBox->addItem("Please Choose");
+            for (int i = 0; i < list.size(); ++i)
+            {
+                QFileInfo fileInfo = list.at(i);
+                qDebug()<< qPrintable(QString("%1 %2").arg(fileInfo.size(), 10)
+                                      .arg(fileInfo.fileName()));
+                fileComboBox->addItem(fileInfo.fileName());
+            }
+
+            qDebug()<<"fileComboBox id::"<<fileComboBox->id();
+            connect(fileComboBox,SIGNAL(sigIndexChanged(QString,QString)),job,SLOT(comboBoxChanged(QString,QString)));
+            id=fileComboBox->id();
+            normalLayout->addWidget(fileComboBox);
+            widgetList.append(fileComboBox);
         }
 
         /// ------------------------------------spinbox-------------------------------//
@@ -296,7 +327,7 @@ void creatUI::creatHideRadioWidget(const QString property, const QString desc, c
 //    </property>
 }
 
-void creatUI::setWidgetRange(QString displaytype, QString min, QString max)
+void creatUI::setWidgetRange(QString /*displaytype*/, QString /*min*/, QString /*max*/)
 {
     /// 那个控件如何传过来？
 //    if(!datatype.isEmpty())  //允许输入的数据类型, 这个如何控制？regexp?
@@ -389,8 +420,14 @@ void creatUI::turnOffJob()
     job->turnOffThisJob();
 }
 
+void creatUI::resetJob(int upValue)
+{
+    qDebug()<<"resetJob";  /// 其实就是upJob,只不过up多次而已
+    job->resetThisJob(upValue);
+}
+
 void creatUI::dragJob(int index,int allRow,QString upOrDown)
 {
-    qDebug()<<"turnOffJob";
+    qDebug()<<"2.dragJob"<<index<<allRow<<upOrDown;
     job->dragThisJob(index,allRow,upOrDown);
 }

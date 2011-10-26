@@ -11,22 +11,18 @@ QJDStackWidget::QJDStackWidget(QWidget *parent) :
     setFrameShadow(QFrame::Raised);
 }
 
-void QJDStackWidget::addFlowWidget(QString flowName, QString flowPath)
+void QJDStackWidget::addFlowWidget(QString flowName, QString flowPath,int value)
 {
     qDebug()<<" qjdStackWidget::addFlowWidget";
-    creatWidget(flowName,flowPath);
-    /// 要先解析xml，再添加
-//    addWidget()
+    creatWidget(flowName,flowPath,value);
 }
 
-void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
+void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath, int value)
 {
     qDebug()<<"qjdStackWidget::creatWidget";
     creat=new creatUI();   /// 一经创建，如何删除？？？
     xmlModule=new readXMLModule();
 
-    hashCreat.insert(creat,stackIndex); //确保creat和index之间的关系不丢失
-    stackIndex++;
     /// ---------------传递文件名--------------------------//
     if(!jobFileName.isEmpty())
     {
@@ -50,7 +46,19 @@ void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
     xmlModule->read(&fileXML);
     fileXML.close();
     /// ------------------------------------------------------------------
-
+    /// 这个Hash同样需要改变,需要和hashItem保持相同的改变顺序
+    qDebug()<<"value::"<<value<<"stackIndex::"<<stackIndex;
+    if(value==stackIndex)
+    {
+        hashCreat.insert(creat,stackIndex); //确保creat和index之间的关系不丢失
+    }
+    if(value<stackIndex)
+    {
+        insertHash(value,creat); // 插入现有之后使用这个调整
+        creat->resetJob(stackIndex-value);
+    }
+    stackIndex++;
+    /// ------------------------------------------------------------------
 
     QScrollArea *area=new QScrollArea;
     area->setWidget(creat);
@@ -60,6 +68,19 @@ void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath)
     setCurrentWidget(area);  //变成需要设置area了..
 
     qDebug()<<"qjdStackWidget::creatWidget  out\n";
+}
+
+void QJDStackWidget::insertHash(int value, creatUI *saveCreat)
+{
+    creatUI *creatui;
+    foreach(creatui,hashCreat.keys())
+    {
+        if(creatui!=saveCreat && hashCreat.value(creatui)>=value)
+        {
+            hashCreat.insert(creatui,hashCreat.value(creatui)+1);
+        }
+    }
+    hashCreat.insert(saveCreat,value);
 }
 
 void QJDStackWidget::getJobXMLfileName(const QString fileName)
@@ -106,18 +127,58 @@ void QJDStackWidget::turnOffWidget(int stackIndex)
 
 void QJDStackWidget::dragWidget(int stackIndex, int currentIndex,int allRow)
 {
-    qDebug()<<"dragWidget";
-    creatUI *dragCreat=hashCreat.key(stackIndex);
+    qDebug()<<"1.dragWidget";
+    // 取出正确的dragCreat
+    creatUI *dragCreat=hashCreat.key(stackIndex);  /// 这个是依据stackIndex的,所以不能改阿
+    qDebug()<<"1-1 stackIndex-currentIndex="<<stackIndex-currentIndex;
 
     if(stackIndex-currentIndex>0)
     {
-        //up
+        // 上移
+        qDebug()<<"1-2 up";
         dragCreat->dragJob(currentIndex,allRow,"up");
     }
     if(stackIndex-currentIndex<0)
     {
-        //down
+        // 下移
+        qDebug()<<"1-2 down";
         dragCreat->dragJob(currentIndex,allRow,"down");
     }
+
+    resetHash(stackIndex,currentIndex,dragCreat);
 }
 
+void QJDStackWidget::resetHash(int before, int after, creatUI *dragC)
+{
+    // down
+    if(after-before>0)
+    {
+        creatUI *creatui;
+        foreach(creatui,hashCreat.keys())
+        {
+            if(creatui!=dragC &&
+                    hashCreat.value(creatui)<=after &&
+                    hashCreat.value(creatui)>=before)
+            {
+                hashCreat.insert(creatui,hashCreat.value(creatui)-1);
+            }
+        }
+        hashCreat.insert(dragC,after);
+    }
+
+    // up
+    if(after-before<0)
+    {
+        creatUI *creatui;
+        foreach(creatui,hashCreat.keys())
+        {
+            if(creatui!=dragC &&
+                    hashCreat.value(creatui)>=after &&
+                    hashCreat.value(creatui)<=before)
+            {
+                hashCreat.insert(creatui,hashCreat.value(creatui)+1);
+            }
+        }
+        hashCreat.insert(dragC,after);
+    }
+}

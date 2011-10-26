@@ -3,5 +3,31 @@
         <file>images/off.png</file>
         <file>images/on.png</file>
         <file>images/add.png</file>
+        <file>images/about.png</file>
+        <file>images/edit-undo.png</file>
+        <file>images/editcopy.png</file>
+        <file>images/editcut.png</file>
+        <file>images/exit.png</file>
+        <file>images/filesave.png</file>
+        <file>images/filesaveas.png</file>
+        <file>images/find.png</file>
+        <file>images/font.png</file>
+        <file>images/gnome-logout.png</file>
+        <file>images/mail-send.png</file>
+        <file>images/new.png</file>
+        <file>images/open.png</file>
+        <file>images/paste.png</file>
+        <file>images/gtk-cancel.png</file>
+        <file>images/color.png</file>
+        <file>images/log.png</file>
+        <file>images/process.png</file>
+        <file>images/media-playback-pause.png</file>
+        <file>images/media-playback-start.png</file>
+        <file>images/media-playback-stop.png</file>
+        <file>images/media-record.png</file>
+        <file>images/process-stop.png</file>
+        <file>images/loginBg.png</file>
+        <file>images/window.png</file>
+        <file>images/onoff.png</file>
     </qresource>
 </RCC>

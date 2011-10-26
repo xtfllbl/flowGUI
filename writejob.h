@@ -38,6 +38,7 @@ public slots:
 
     bool deleteThisJob();  //删除这项
 //    bool upThisJob();
+    bool resetThisJob(int upValue);
 //    bool downThisJob();
     bool turnOnThisJob();
     bool turnOffThisJob();
@@ -79,6 +80,7 @@ private:
     void addModuleName(const QString name,const QString id); //添加的时候需要id
     void delModuleName(const QString name);  // 其他时候只需要检查id
 //    void upModuleName(const QString name);
+    void resetModuleName(const QString name);
 //    void downModuleName(const QString name);
     void turnOnModuleName(const QString name);
     void turnOffModuleName(const QString name);

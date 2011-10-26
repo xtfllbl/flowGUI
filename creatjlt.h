@@ -31,11 +31,14 @@ private:
     int processCount;
 
     QHash<int , int> hashJob;
+//    QHash<int, QString> hashPid;
 
 public slots:
     bool setXMLJobListFileName(const QString fileName);
     void startRun();
     void processFinished(int pid, int sig, QProcess::ExitStatus);
+
+    QHash<int,int> getJobHash();
 
 };
 

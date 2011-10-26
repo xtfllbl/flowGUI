@@ -5,8 +5,9 @@
 QJDModuleList::QJDModuleList(QWidget *parent) :
     QTreeWidget(parent)
 {
-    setFrameShape(QFrame::WinPanel);
-    setFrameShadow(QFrame::Raised);
+    setFocusPolicy(Qt::NoFocus);
+//    setFrameShape(QFrame::WinPanel);
+//    setFrameShadow(QFrame::Raised);
     setHeaderHidden(true);
 
     setSelectionMode(QAbstractItemView::SingleSelection);
@@ -19,12 +20,21 @@ QJDModuleList::QJDModuleList(QWidget *parent) :
     connect(this,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int))
             ,this,SLOT(handleItemDoubleClickedEvent(QTreeWidgetItem*,int)));
     setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    QPalette palette;
+    QBrush brush(QColor(85, 0, 255, 255));
+    brush.setStyle(Qt::SolidPattern);
+    palette.setBrush(QPalette::Active, QPalette::HighlightedText, brush);
+    palette.setBrush(QPalette::Inactive, QPalette::HighlightedText, brush);
+    palette.setBrush(QPalette::Disabled, QPalette::HighlightedText, brush);
+    this->setPalette(palette);
+
 }
 
 void QJDModuleList::analysisIndexXML()
 {
     /// ----------------------------解析索引----------------------------
-    fileXMLIndex.setFileName("xml/index.xml");
+    fileXMLIndex.setFileName(":/xml/index.xml");
     fileXMLIndex.open(QFile::ReadOnly);
     indexXML->read(&fileXMLIndex);
 }
@@ -88,9 +98,8 @@ void QJDModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
     }
     else
     {
-        // 1.还要添加到邻居的flow列表中
-        emit sigAddFlow(flowName);
-        // 2.双击之后，添加模块(widget),首先要生成widget，包括读取模块xml
+        /// TODO功能: 添加流程到最后,或者添加到当前的index之后
+        // 双击之后，添加模块(widget),首先要生成widget，包括读取模块xml
         QString flowPath=indexXML->getModulePath().at(flowIndex);
         emit sigAddFlowList(flowName,flowPath);
     }

@@ -12,6 +12,7 @@ public:
 
 private:
 //    void resizeEvent(QResizeEvent *event);
+//    void mouseDoubleClickEvent(QMouseEvent *event);
 signals:
 
 public slots:

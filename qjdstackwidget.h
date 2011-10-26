@@ -22,7 +22,7 @@ signals:
 public slots:
 //    void handleMousePress(QString);  //这个index和实际的stack有出入哦,如何换算呢？
 
-    void addFlowWidget(QString,QString);
+    void addFlowWidget(QString,QString,int);
     void getJobXMLfileName(const QString);
     void delFlowWidget(int);
 //    void moveUpFlowWidget(int);
@@ -39,7 +39,10 @@ private:
     readXMLModule *xmlModule;
     creatUI *creat;
 
-    void creatWidget(QString, QString);
+    void creatWidget(QString, QString, int);
+    void resetHash(int,int,creatUI *);
+    void insertHash(int,creatUI *);
+
 };
 
 #endif // QJDSTACKWIDGET_H

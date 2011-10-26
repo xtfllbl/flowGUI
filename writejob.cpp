@@ -114,7 +114,7 @@ bool writeJob::readJob()
 /// 分析完毕用来写入的函数
 bool writeJob::write()
 {
-    qDebug()<<"write xml";
+    qDebug()<<"5.write xml";
     /// 写可以等模块分析完毕之后
     fileWrite.setFileName(jobFileName);
     if(!fileWrite.open(QFile::WriteOnly | QFile::Text))
@@ -879,6 +879,17 @@ void writeJob::parsePropertyElement(QDomElement property,QString text)
             oldDisplayType.replaceChild(newEle[i],oldEle[i]);
         }
     }
+    if(type=="filecombobox")
+    {
+        qDebug()<<"handle filecombobox";
+        QDomElement optionEle=oldDisplayType.firstChildElement("option");
+
+        QDomElement newOptionEle = doc.createElement("option");
+        newOptionEle.setAttribute("value",text);  //保留控件类型
+        QDomText newOptionText = doc.createTextNode(optionEle.text());
+        newOptionEle.appendChild(newOptionText);
+        oldDisplayType.replaceChild(newOptionEle,optionEle);
+    }
     if(type=="radiobutton")
     {
         qDebug()<<"handle radiobutton:: this can`t be shown,beacuse of the anthoer parseProperty";
@@ -906,7 +917,7 @@ void writeJob::parsePropertyHideElement(QDomElement property,bool checked)
     }
 }
 
-void writeJob::parsePropertyHideElement(QDomElement property, QString text, QString id)
+void writeJob::parsePropertyHideElement(QDomElement property, QString text, QString /*id*/)
 {
     /// 先要从写上入手，写入id
     QDomElement oldDisplayType=property.firstChildElement("displaytype");
@@ -1090,6 +1101,69 @@ void writeJob::delModuleName(const QString name)
 //        qDebug()<<"up job failed";
 //}
 
+bool writeJob::resetThisJob(int upValue)
+{
+    qDebug()<<"writeJob::job will be reset(move up) from the xml";
+    if(fileRead.isOpen())
+        qDebug()<<"writeJob::fileRead is already open";
+    fileRead.setFileName(jobFileName);
+    qDebug()<<"writeJob::jobFileName::"<<jobFileName;
+
+    if(!fileRead.open(QFile::ReadOnly | QFile::Text))
+    {
+        qDebug()<<"writeJob::can`t open jobFileXML in readonly";
+        alreadyReadJob=false;
+        return false;
+    }
+    /// 每次都设置，是不是导致错误的根源
+    if (!doc.setContent(&fileRead, true, &errorStr, &errorLine,&errorColumn))
+    {
+        // 错误处理，先不必要
+        qDebug()<<"writeJob::has sth wrong,need init first";
+        QWidget *widgetMSG=new QWidget();
+        QMessageBox::information(widgetMSG, tr("writeJob::DOM Bookmarks"),
+                                 tr("Parse error at line %1, column %2:\n%3")
+                                 .arg(errorLine)
+                                 .arg(errorColumn)
+                                 .arg(errorStr));
+        fileRead.close();
+        alreadyReadJob=false;
+
+        return false;
+    }
+    else
+    {
+        for(int i=0;i<upValue;i++)
+        {
+            resetModuleName(moduleName);
+        }
+        alreadyReadJob=true;
+
+        fileRead.close();
+        return true;
+    }
+}
+
+void writeJob::resetModuleName(const QString name)
+{
+        qDebug()<<"writeJob::resetModuleName";
+        QDomElement root = doc.documentElement();
+        QDomElement modEle = root.firstChildElement("Module");
+
+        while (!modEle.isNull())
+        {
+            if(modEle.attribute("name")==name && modEle.attribute("id")==moduleID)
+            {
+                /// 采用的替换法,多替换几次???难道仅仅是这个函数多执行几次???
+                QDomElement prevModEle=modEle.previousSiblingElement("Module");
+                root.insertBefore(modEle,prevModEle);
+                break;
+            }
+            modEle = modEle.nextSiblingElement("Module");
+        }
+        if(!write())
+            qDebug()<<"writeJob::reset job failed";
+}
 //bool writeJob::downThisJob()
 //{
 //    qDebug()<<"job will be move down from the xml";
@@ -1272,7 +1346,7 @@ void writeJob::turnOffModuleName(const QString name)
 
 bool writeJob::dragThisJob(int index,int allRow,QString upOrDown)
 {
-    qDebug()<<"job will be drag to the xml"<<index;
+    qDebug()<<"3.job will be drag to the xml"<<index;
     if(fileRead.isOpen())
         qDebug()<<"fileRead is already open";
     fileRead.setFileName(jobFileName);
@@ -1311,7 +1385,7 @@ bool writeJob::dragThisJob(int index,int allRow,QString upOrDown)
 
 void writeJob::dragModuleName(const QString name, const int index, const int allRow, const QString upOrDown)
 {
-    qDebug()<<"dragModuleName";
+    qDebug()<<"4.dragModuleName";
     QDomElement root = doc.documentElement();
     QDomElement modEle = root.firstChildElement("Module");
     if(index==0)  //插到头

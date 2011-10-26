@@ -1,17 +1,14 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2010-06-29T13:01:17
-#
-#-------------------------------------------------
-# 解析模块xml, 窗件界面
-#TODO: 可隐藏界面的制作
-
 QT       += core gui
 QT += xml
 
 TARGET = flowGui
 TEMPLATE = app
 
+DEPENDPATH += .
+MOC_DIR += ./GeneratedFiles/moc
+OBJECTS_DIR += ./GeneratedFiles/ofile
+UI_DIR += ./GeneratedFiles
+RCC_DIR += ./GeneratedFiles
 
 SOURCES += main.cpp\
         mainwindow.cpp \
@@ -32,7 +29,12 @@ SOURCES += main.cpp\
     src/qjdprocess.cpp \
     qjdprocesswidget.cpp \
     process/qjdproc.cpp \
-    process/qjdmisc.cpp
+    process/qjdmisc.cpp \
+    src/qjdtextbrowser.cpp \
+    src/qjdhighlighter.cpp \
+    src/qjdfilecombobox.cpp \
+    qjdhistorybrowser.cpp \
+    src/qjdargu.cpp
 
 HEADERS  += mainwindow.h \
     creatui.h \
@@ -52,10 +54,21 @@ HEADERS  += mainwindow.h \
     src/qjdprocess.h \
     qjdprocesswidget.h \
     process/qjdproc.h \
-    process/config.h
+    process/config.h \
+    src/qjdtextbrowser.h \
+    src/qjdhighlighter.h \
+    src/qjdfilecombobox.h \
+    qjdhistorybrowser.h \
+    src/qjdargu.h
 
 FORMS    += \
-    mainwindow.ui
+    mainwindow.ui \
+    src/qjdtextbrowser.ui
 
 RESOURCES += \
-    images.qrc
+    images.qrc \
+    xml.qrc \
+    stylesheet.qrc
+
+OTHER_FILES += \
+    styles/stylesheet.qss

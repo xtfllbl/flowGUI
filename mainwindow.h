@@ -12,6 +12,8 @@
 #include "qjdprocesswidget.h"
 #include "creatjlt.h"
 #include "process/qjdproc.h"
+#include "src/qjdtextbrowser.h"
+#include "qjdhistorybrowser.h"
 
 namespace Ui {
     class MainWindow;
@@ -25,16 +27,25 @@ public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    // 需要的控件
     QJDModuleList *moduleList;
     QJDStackWidget *stackWidget;
     QJDFlowList *flowList;
-    QJDProcessWidget *processWidget;
     creatJLT *jlt;
-
+    QJDTextBrowser *textBrowser;
     Proc *proc;
 
+    // tabView 下的
+    QTabWidget *tabWidget;
+    QGridLayout *gLayoutTab;
+    QGridLayout *gLayoutProcess;
+    QWidget *tabProcess;
+    QJDProcessWidget *processWidget;
+    QWidget *tabLog;
+    QJDHistoryBrowser *historyBrowser;
+
     QSplitter *splitter;
-//    QSplitter splitter2;
+    QSplitter *splitter2;
 
     QFile fileXMLIndex;
     QFile fileXML;
@@ -44,8 +55,10 @@ private:
     Ui::MainWindow *ui;
 
     void resizeEvent(QResizeEvent *);
+    QImage _image;
 
     void setProcData();
+
 //    QTableWidget *processWidget;
     QTimer *expandTimer;
     QTimer *miniTimer;
@@ -53,6 +66,7 @@ private:
 
     QStandardItemModel *model;
     QMenu *processMenu;
+    QMenu *logMenu;
 
     QString aPid;
     QString aCmd;
@@ -98,6 +112,7 @@ private:
     int processID;
     int selectRow;
 
+    int clickedRow;
     QMenu *menu;
     QAction *actStop;
     QAction *actCon;
@@ -106,18 +121,14 @@ private:
     QAction *actHan;
     QAction *actView;
 
+    QAction *actShowLog;
+
+    QHash<int,int> saveHash;
+
 private slots:
-    void on_actionMini_triggered();
-    void on_actionExpand_triggered();
     void on_actionExcute_triggered();
     void on_actionExit_triggered();
     void processWidgetPressed(QModelIndex);
-
-    void large();
-    void small();
-
-    void setExpand();
-    void setMini();
 
     void autoRefresh();
     void vectorClear();
@@ -129,8 +140,13 @@ private slots:
     void conProcess();
     void send_to_selected(int);
     void sendsig(int, int);
+    void saveRow(int,int);
+    void showHistoryLog();
 
     void showProcessContextMenu(QPoint);
+    void showHistoryContextMenu(QPoint);
+    void processWidgetDoubleClicked(QModelIndex);
+    void historyBrowserDoubleClicked(QString fileName);
 
 };
 

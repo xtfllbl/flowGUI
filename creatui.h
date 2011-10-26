@@ -63,6 +63,7 @@ public slots:
 //    void downJob();
     void turnOnJob();
     void turnOffJob();
+    void resetJob(int);
     void dragJob(int,int,QString);
 //    QString getLineEditText(QString text, QString id);
 };

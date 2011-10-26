@@ -19,7 +19,7 @@ signals:
     void sigNewItemAdd();
     void sigItemChangePos();
     void sigJobXMLfileName(QString);
-    void sigAddFlowWidget(QString,QString);
+    void sigAddFlowWidget(QString,QString,int);
 
     void sigDeleteFlow(int);
 //    void sigUpFlow(int stackIndex);  // 需要前项和后项么？不需要，往上挪就是了
@@ -55,12 +55,20 @@ private slots:
 
     void actTurnSlot();
     void actDelSlot();
+
 private:
     QList<QListWidgetItem *> itemList;
 
     /// 拖拽
 //    void startDrag();
     QPoint startPos;
+    int mousePressIndex;
+    QListWidgetItem *dragItem;
+    bool hasMousePressed;
+
+    void insertHashValue(int,QListWidgetItem *);
+    void resetHashValue(int,int,QListWidgetItem *);
+
 };
 
 #endif // QJDFLOWLIST_H
