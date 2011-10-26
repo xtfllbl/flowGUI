@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE job>
+<job version="1.0">
+    <Module status="on" id="d7OJ5VoQaf2lMJU" name="Data Input">
+        <property id="Agyp1eO44zbGECp" name="infilename">
+            <desc>data in file name</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">/home/lub/data/envrtest/0304-8bit</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="von7tHqGWdyoVSG" name="ReSample">
+        <property id="sVxRtSvLY8W5RZa" name="resamplerate">
+            <desc>resamplerate number</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">4</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="R91CholyKmkTHSt" name="FirstBreakAutoPick">
+        <property id="4CogRGFSusv1Vsh" name="jdthpath">
+            <desc>jdthpath</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">null</displaytype>
+        </property>
+        <property id="4olHEKgknNkboRf" name="minvelo">
+            <desc>minvelo</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">1500</displaytype>
+        </property>
+        <property id="R7hzGLxwJKBrRof" name="maxvel">
+            <desc>maxvel</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">2000</displaytype>
+        </property>
+        <property id="y9yQM7GIHR2ULiw" name="tw">
+            <desc>tw</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">50</displaytype>
+        </property>
+        <property id="NWGQTKdnYdAc5ZF" name="smooth">
+            <desc>smooth</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="ZKGnUKFVHZU1vB9" name="isoutput">
+            <desc>isoutput</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="5ZMdPOEfjyf08m8" name="pickFileName">
+            <desc>pickFileName</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">/home/lub/program/qt/flow/pick2.pick</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="d6Sk7lhqZpIBrjG" name="ShotAttributesExtraction">
+        <property id="Zbo0bodxzNAxRCA" name="jdthpath">
+            <desc>jdthpath</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">null</displaytype>
+        </property>
+        <property id="TkSGnLUmwhIx8FL" name="stime">
+            <desc>stime</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">200</displaytype>
+        </property>
+        <property id="jw3DWEFctzie04E" name="etime">
+            <desc>etime</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">1200</displaytype>
+        </property>
+        <property id="HuRNH7ZyzVhWrFt" name="min_offset">
+            <desc>min_offset</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">1000</displaytype>
+        </property>
+        <property id="Y4gb7a3ggQclF6x" name="max_offset">
+            <desc>max_offset</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">2000</displaytype>
+        </property>
+        <property id="NpOurD4b1QLlKHF" name="isoutput">
+            <desc>isoutput</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="vfL6qVGAVLMzqDS" name="attriFilename">
+            <desc>scanFileName</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">attr.sa</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="QZUJVySGiZBTmuK" name="TraceDisplay">
+        <property id="JEwArqkF5n5yVTa" name="jdthpath">
+            <desc>jdthpath</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">null</displaytype>
+        </property>
+    </Module>
+</job>

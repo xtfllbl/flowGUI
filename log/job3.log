@@ -1,0 +1,57 @@
+-----------------------JD Flow Ctrl Version 1.0-----------------------
+
+*-*-*-*-*-*-*-*-*Anaylsis Job File*-*-*-*-*-*-*-*-*
+
+Input File									:  /home/lub/data/envrtest/0304-8bit.jd
+Number of Gather							:  30
+Sample interval (ms)				 		:  2
+Trace length (ms)							:  6000
+Maximum number of traces per ensemble	:  1600
+
+
+*-*-*-*-*-*-*-*-*Module Parameter*-*-*-*-*-*-*-*-*
+
+..........ReSample..........
+resamplerate			:	4
+
+
+..........FirstBreakAutoPick..........
+tw				:	50
+isoutput				:	1
+maxvel				:	2000
+pickFileName			:	/home/lub/program/qt/flow/pick2.pick
+minvelo				:	1500
+jdthpath				:	null
+smooth					:	1
+
+
+..........AbnormalTraceScan..........
+unbalanceValue		:	20
+singleValue			:	0.05
+isoutput				:	1
+emptyValue				:	0.0001
+scanFileName			:	scfilename2.scan
+stime					:	200
+noiseValueT			:	0.1
+noiseValueG			:	5
+jdthpath				:	null
+etime					:	1200
+
+
+..........ShotAttributesExtraction..........
+max_offset				:	2000
+isoutput				:	1
+min_offset				:	1000
+scanFileName			:	attr.sa
+stime					:	200
+jdthpath				:	null
+etime					:	1200
+
+
+-------------------Success!------------------
+Complete:  10%...
+Complete:  20%...
+Complete:  30%...
+Complete:  40%...
+Complete:  70%...
+success exit!

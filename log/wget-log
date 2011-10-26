@@ -1,0 +1,18 @@
+--2011-03-02 17:03:38--  http://67.159.23.178/100mb.test
+Connecting to 67.159.23.178:80... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度：104857600 (100M) [application/x-tar]
+Saving to: `100mb.test'
+
+ 0% [                                       ] 24,804      58.2B/s  eta 20d 20h  0% [                                       ] 64,892       152B/s  eta 20d 20h  0% [                                       ] 67,788       159B/s  eta 20d 20h  0% [                                       ] 70,684       166B/s   in 7m 7s   
+
+2011-03-02 17:10:46 (166 B/s) - Connection closed at byte 70684. 重试中。
+
+--2011-03-02 17:10:47--  (尝试次数： 2)  http://67.159.23.178/100mb.test
+Connecting to 67.159.23.178:80... 已连接。
+已发出 HTTP 请求，正在等待回应... 206 Partial Content
+长度：104857600 (100M), 104786916 (100M) remaining [application/x-tar]
+Saving to: `100mb.test'
+
+        [ skipping 50K ]
+    50K ,,,,,,,,,, ,,,,,,,,,. .

@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE job>
+<job version="1.0">
+    <Module status="on" id="IRHLf4yKLeeQZlz" name="Data Input">
+        <property id="WCQGm5pGYQbpnly" name="infilename">
+            <desc>data in file name</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">/home/lub/data/envrtest/0304-8bit</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="2gRfB9ZEhFWiZqa" name="ReSample">
+        <property id="LTv3u7sJVQnUYzr" name="resamplerate">
+            <desc>resamplerate number</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">4</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="kH4aO2bL3xcKv8r" name="FirstBreakAutoPick">
+        <property id="9TBtt4Cic0IvVy1" name="jdthpath">
+            <desc>jdthpath</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">null</displaytype>
+        </property>
+        <property id="aT5CdJJxOdLV5uf" name="minvelo">
+            <desc>minvelo</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">1500</displaytype>
+        </property>
+        <property id="4MlDbumV2HHT6tP" name="maxvel">
+            <desc>maxvel</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">2000</displaytype>
+        </property>
+        <property id="a5UMBvUkeC6GFVi" name="tw">
+            <desc>tw</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">50</displaytype>
+        </property>
+        <property id="DGzLYdTESZ40y7g" name="smooth">
+            <desc>smooth</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="KeoBeU4weZ7ub0D" name="isoutput">
+            <desc>isoutput</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="GKzzFaTRctidsOt" name="pickFileName">
+            <desc>pickFileName</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">/home/lub/program/qt/flow/pick2.pick</displaytype>
+        </property>
+    </Module>
+    <Module status="on" id="EZaMUwooA8y7ltB" name="AbnormalTraceScan">
+        <property id="kA2JZr9Q7hcE5Wc" name="jdthpath">
+            <desc>jdthpath</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">null</displaytype>
+        </property>
+        <property id="J0rSgl0oJsH17I3" name="stime">
+            <desc>stime</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">200</displaytype>
+        </property>
+        <property id="sVfK9ifGS1uDw3U" name="etime">
+            <desc>etime</desc>
+            <datatype>int</datatype>
+            <displaytype name="spinbox">1200</displaytype>
+        </property>
+        <property id="jQbnY23ioPxZTw4" name="emptyValue">
+            <desc>emptyValue</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">0.0001</displaytype>
+        </property>
+        <property id="NuD9PTdm1QoHrbT" name="unbalanceValue">
+            <desc>unbalanceValue</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">20</displaytype>
+        </property>
+        <property id="Z8w4d5HAIk1QjN7" name="noiseValueT">
+            <desc>noiseValueT</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">0.1</displaytype>
+        </property>
+        <property id="8Ff9HVtNzI17aex" name="noiseValueG">
+            <desc>noiseValueG</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">5</displaytype>
+        </property>
+        <property id="xmV7n8T4xnA0heW" name="singleValue">
+            <desc>singleValue</desc>
+            <datatype>float</datatype>
+            <displaytype name="lineedit">0.05</displaytype>
+        </property>
+        <property id="lM7A30LkCGx65x2" name="isoutput">
+            <desc>isoutput</desc>
+            <datatype>bool</datatype>
+            <displaytype name="checkbox">checked</displaytype>
+        </property>
+        <property id="P6ciidQs8rHkQO5" name="scanFileName">
+            <desc>scanFileName</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">scfilename2.scan</displaytype>
+        </property>
+    </Module>
+</job>

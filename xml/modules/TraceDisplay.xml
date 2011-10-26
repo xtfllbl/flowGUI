@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ui>
+<ui version="1.0">
+<module name="TraceDisplay" version="1.0">
+<property name="jdthpath">
+	<desc>jdthpath</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">null</displaytype>
+</property>
+</module>
+</ui>

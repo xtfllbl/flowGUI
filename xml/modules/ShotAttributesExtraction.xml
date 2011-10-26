@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE ui>
+<ui version="1.0">
+<module name="ShotAttributesExtraction" version="1.0">
+<property name="jdthpath">
+	<desc>jdthpath</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">null</displaytype>
+</property>
+<property name="stime">
+	<desc>stime</desc>
+	<datatype>int</datatype>
+	<displaytype name="spinbox">200</displaytype>
+</property>
+<property name="etime">
+	<desc>etime</desc>
+	<datatype>int</datatype>
+	<displaytype name="spinbox">1200</displaytype>
+</property>
+<property name="min_offset">
+	<desc>min_offset</desc>
+	<datatype>float</datatype>
+	<displaytype name="lineedit">1000</displaytype>
+</property>
+<property name="max_offset">
+	<desc>max_offset</desc>
+	<datatype>float</datatype>
+	<displaytype name="lineedit">2000</displaytype>
+</property>
+<property name="isoutput">
+	<desc>isoutput</desc>
+	<datatype>bool</datatype>
+	<displaytype name="checkbox">checked</displaytype>
+</property>
+<property name="attriFilename">
+	<desc>scanFileName</desc>
+	<datatype>string</datatype>
+	<displaytype name="lineedit">attr.sa</displaytype>
+</property>
+</module>
+</ui>

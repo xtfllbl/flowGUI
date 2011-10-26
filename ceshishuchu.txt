@@ -1,0 +1,9 @@
+1
+/home/lub/program/qt/flow/MainFlow
+log/job1.log
+99
+Data Input|infilename=/home/lub/data/envrtest/0304-8bit;
+ReSample|resamplerate=4;
+FirstBreakAutoPick|jdthpath=null;minvelo=1500;maxvel=2000;tw=50;smooth=1;isoutput=1;pickFileName=/home/lub/program/qt/flow/pick2.pick;
+AbnormalTraceScan|jdthpath=null;stime=200;etime=1200;emptyValue=0.0001;unbalanceValue=20;noiseValueT=0.1;noiseValueG=5;singleValue=0.05;isoutput=1;scanFileName=scfilename2.scan;
+ShotAttributesExtraction|jdthpath=null;stime=200;etime=1200;min_offset=1000;max_offset=2000;isoutput=1;scanFileName=/home/lub/attr.sa;

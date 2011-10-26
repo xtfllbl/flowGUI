@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE job>
+<job version="1.0">
+    <Module status="on" id="v9kKtcqD9cvIxIA" name="Data Input">
+        <property id="Z4uRLlLRNx37jfg" name="infilename">
+            <desc>data in file name</desc>
+            <datatype>string</datatype>
+            <displaytype name="lineedit">/home/lub/data/envrtest/0304-8bit</displaytype>
+        </property>
+    </Module>
+</job>
