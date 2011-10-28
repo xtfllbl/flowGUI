@@ -265,7 +265,7 @@ QLineEdit:disabled, QSpinBox:disabled, QDoubleSpinBox:disabled, QTimeEdit:disabl
 	border-radius: 0px;
 }
 
-QScrollArea, QTableView, QTextBrowser, QTextEdit {
+QScrollArea, QTextBrowser, QTextEdit {
         background-color: #f0f0f0;
 	border-color: #969696;
 	border-style: solid; 
@@ -276,7 +276,7 @@ QScrollArea, QTableView, QTextBrowser, QTextEdit {
                         border-width: 1px 1px 1px 1px;*/
 }
 
-QScrollArea:focus, QTableView:focus, QTextBrowser:focus, QListWidget:focus, QTextEdit:focus, QTreeWidget:focus {
+QScrollArea:focus, QTextBrowser:focus, QListWidget:focus, QTextEdit:focus, QTreeWidget:focus {
 	background-color: #f0f0f0;
         border-color: #3178bf;
 	border-style: solid; 
@@ -638,7 +638,7 @@ QTableView {
       gridline-color: #cccccc;
       selection-color: #000000;
 }
-QTableView:focus, QTableView QSpinBox:focus {
+QTableView:focus, QSpinBox:focus {
       border-image: none;
       background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
 					stop: 0 #b7d2ed, stop: 0.25 #c7dcf1,

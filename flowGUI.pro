@@ -67,8 +67,10 @@ FORMS    += \
 
 RESOURCES += \
     images.qrc \
-    xml.qrc \
-    stylesheet.qrc
+    stylesheet.qrc \
+    xml.qrc
 
 OTHER_FILES += \
     styles/stylesheet.qss
+
+

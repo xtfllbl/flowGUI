@@ -17,6 +17,12 @@ void QJDStackWidget::addFlowWidget(QString flowName, QString flowPath,int value)
     creatWidget(flowName,flowPath,value);
 }
 
+void QJDStackWidget::addHashListAndCreat(QListWidgetItem *item)
+{
+    qDebug()<<"QJDStackWidget::addHashListAndCreat::"<<item<<creat;
+    hashListCreat.insert(item,currentIndex());
+}
+
 void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath, int value)
 {
     qDebug()<<"qjdStackWidget::creatWidget";
@@ -59,6 +65,7 @@ void QJDStackWidget::creatWidget(QString /*flowName*/, const QString flowPath, i
     }
     stackIndex++;
     /// ------------------------------------------------------------------
+    qDebug()<<hashCreat;
 
     QScrollArea *area=new QScrollArea;
     area->setWidget(creat);
@@ -146,6 +153,8 @@ void QJDStackWidget::dragWidget(int stackIndex, int currentIndex,int allRow)
     }
 
     resetHash(stackIndex,currentIndex,dragCreat);
+    qDebug()<<hashCreat;
+
 }
 
 void QJDStackWidget::resetHash(int before, int after, creatUI *dragC)
@@ -181,4 +190,10 @@ void QJDStackWidget::resetHash(int before, int after, creatUI *dragC)
         }
         hashCreat.insert(dragC,after);
     }
+}
+
+void QJDStackWidget::setCurrentHashIndex(QListWidgetItem *item)
+{
+    /// 忠于创建时的顺序
+    setCurrentIndex(hashListCreat.value(item));
 }

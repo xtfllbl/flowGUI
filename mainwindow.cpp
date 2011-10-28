@@ -147,8 +147,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(moduleList,SIGNAL(sigAddFlowList(QString,QString)),flowList,SLOT(addFlow(QString,QString)));
     // 添加 stack
     connect(flowList,SIGNAL(sigAddFlowWidget(QString,QString,int)),stackWidget,SLOT(addFlowWidget(QString,QString,int)));
+    connect(flowList,SIGNAL(sigAddHashListAndCreat(QListWidgetItem*)),
+            stackWidget,SLOT(addHashListAndCreat(QListWidgetItem*)));
     /// 依据hashItem来改变
-    connect(flowList,SIGNAL(sigChangeStackWidgetIndex(int)),stackWidget,SLOT(setCurrentIndex(int)));
+    connect(flowList,SIGNAL(sigChangeStackWidgetIndex(QListWidgetItem *)),
+            stackWidget,SLOT(setCurrentHashIndex(QListWidgetItem *)));
 
     // processWidget
     connect(processWidget,SIGNAL(pressed(QModelIndex)),this,SLOT(processWidgetPressed(QModelIndex)));
@@ -188,8 +191,6 @@ MainWindow::MainWindow(QWidget *parent) :
     actShowLog = logMenu->addAction("Show Log");
     actShowLog->setIcon(QIcon(":/images/log.png"));
     connect(actShowLog, SIGNAL(triggered()), this, SLOT(showHistoryLog()));
-
-
 
     proc=new Proc();
     proc->refresh();
@@ -329,6 +330,7 @@ void MainWindow::setProcData()
     processWidget->setModel(model);
     processWidget->setCurrentIndex(processWidget->model()->index(selectRow,0));
     processWidget->horizontalHeader()->setStretchLastSection(true);   //不够就不调整了？？
+//    processWidget->setStyleSheet("QTableView {selection-background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #d2d2d2, stop: 0.25 #dcdcdc,stop: 0.5 #e6e6e6, stop: 1 #d2d2d2);gridline-color: #cccccc;selection-color: #000000;}QTableView:focus{border-image: none;background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,stop: 0 #b7d2ed, stop: 0.25 #c7dcf1,stop: 0.5 #d7e6f5, stop: 1 #b7d2ed);color: #666666;}");
 
 
     saveHash=jlt->getJobHash();

@@ -15,14 +15,18 @@ public:
     explicit QJDStackWidget(QWidget *parent = 0);
 //    QHash<QString, int> hashIndex; //没有使用
     QHash<creatUI *,int> hashCreat;  //将creat和index联系起来，找的到，还能删除？？？
+    QHash<QListWidgetItem *,int> hashListCreat;
     int stackIndex;
 
 signals:
 
 public slots:
 //    void handleMousePress(QString);  //这个index和实际的stack有出入哦,如何换算呢？
+    void setCurrentHashIndex(QListWidgetItem *);
 
     void addFlowWidget(QString,QString,int);
+    void addHashListAndCreat(QListWidgetItem *);
+
     void getJobXMLfileName(const QString);
     void delFlowWidget(int);
 //    void moveUpFlowWidget(int);

@@ -6,6 +6,7 @@ QJDArgu::QJDArgu(QObject *parent) :
     QObject(parent)
 {
     FlowProcess="MainFlow";
+//    FlowProcess="geany";
     HistoryLogRefreshInterval=10000;
 }
 

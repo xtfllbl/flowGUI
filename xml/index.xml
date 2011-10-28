@@ -3,18 +3,6 @@
 <index version="1.0">
 <modulegroup name="module group 1">
 
-<module name="xtf" version="1.0">
-    <path>:/xml/modules/xtf.xml</path>
-    <desc>This is a xtf module.</desc>
-    <type>Data IO</type>
-</module>
-
-<module name="xtf2" version="1.0">
-    <path>:/xml/modules/xtf2.xml</path>
-    <desc>This is a xtf2 module.</desc>
-        <type>Data Process</type>
-</module>
-
 <module name="ReSample" version="1.0">
     <path>:/xml/modules/resample.xml</path>
     <desc>This is a resample module.</desc>

@@ -147,6 +147,7 @@ void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
 //        hashItem.insert(item, currentRow()+1); // 在稍候的函数中,详细处理插入
          insertHashValue(currentRow()+1,item);  // 插入hashItem,插入之后,之后的都要改变
          emitValue=currentRow()+1;
+         this->setCurrentRow(currentRow()+1);
     }
     index++;
 
@@ -154,6 +155,8 @@ void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
     //    qDebug()<<"current item ::" <<currentItem()<<currentRow();
     /// 应当把item一起传过去，方便邦定
     emit sigAddFlowWidget(flowName, flowPath, emitValue);  // 生成界面,无所谓顺序了
+
+    emit sigAddHashListAndCreat(item);
 }
 
 void QJDFlowList::insertHashValue(int value, QListWidgetItem *saveItem)
@@ -255,7 +258,8 @@ void QJDFlowList::creatJobXML()
 void QJDFlowList::itemChangeSlot(int /*row*/)
 {
     QListWidgetItem *item=currentItem();
-    emit sigChangeStackWidgetIndex(hashItem.value(item));
+    qDebug()<<currentItem();
+    emit sigChangeStackWidgetIndex(item);
 }
 
 /// ---------------------------------------------------------------------------///
@@ -281,8 +285,8 @@ void QJDFlowList::dropEvent(QDropEvent *event)
     /// 那个hash应当以mouse拖拽完毕的index为准
 //    qDebug()<<"beforemouse:"<<mousePressIndex<<"beforehash:"<<hashItem.value(dragItem)<<"now::"<<currentRow();
     emit sigDrag(hashItem.value(dragItem), currentRow(),this->count());
-    resetHashValue(hashItem.value(dragItem), currentRow(), dragItem);
 
+    resetHashValue(hashItem.value(dragItem), currentRow(), dragItem);
 }
 
 // 重置hashItem

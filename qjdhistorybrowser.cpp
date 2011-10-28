@@ -52,7 +52,7 @@ QJDHistoryBrowser::QJDHistoryBrowser(QWidget *parent) :
 void QJDHistoryBrowser::setLogFile()
 {
     /// 最好界面上哪里转一圈....
-    qDebug()<<"Refreashing History Log ...";
+    /// Refreashing History Log
     hashFilePath.clear();  //刷新清除
 
     /// -------------------------head--------------------///
@@ -108,7 +108,16 @@ void QJDHistoryBrowser::setLogFile()
         progressBar->setAlignment(Qt::AlignCenter);
 
         nameItem->setText(fileNameList.at(i));
+        if(getLogStat(filePathList.at(i))=="success")
+        {
+            statItem->setTextColor(QColor(0, 0, 255, 255));
+        }
+        if(getLogStat(filePathList.at(i))=="error")
+        {
+            statItem->setTextColor(QColor(255, 0, 0, 255));
+        }
         statItem->setText(getLogStat(filePathList.at(i)));
+
         timeItem->setText(fileTimeList.at(i));
         progressBar->setValue(getLogProgress(filePathList.at(i)));
         // getLogProgress

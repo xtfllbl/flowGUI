@@ -138,9 +138,11 @@ void creatJLT::RunProcess()
     connect(JDP, SIGNAL(sigFinished(int,int,QProcess::ExitStatus)), this, SLOT(processFinished(int, int, QProcess::ExitStatus)));
     //JDP->start(argu->FlowProcess,paralist);
     qDebug()<<"para  !!!"<<paralist;
-    /// JDP->start("MainFlow",paralist);
+
+//    JDP->start("./MainFlow",paralist);
     JDP->start("geany",paralist);
 
+    qDebug()<<"Starting MainFlow";
     JDP->savePID();
 
     hashJob.insert(JDP->getPID(),processCount);  // 这个保存了pid和jobX之间的关系, 也就是说其他程序运行不会被记录在案
