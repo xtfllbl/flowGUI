@@ -108,13 +108,20 @@ void QJDHistoryBrowser::setLogFile()
         progressBar->setAlignment(Qt::AlignCenter);
 
         nameItem->setText(fileNameList.at(i));
-        if(getLogStat(filePathList.at(i))=="success")
+        if(getLogStat(filePathList.at(i))=="Success")
         {
             statItem->setTextColor(QColor(0, 0, 255, 255));
+            statItem->setIcon(QIcon(":/images/success.png"));
         }
-        if(getLogStat(filePathList.at(i))=="error")
+        if(getLogStat(filePathList.at(i))=="Error")
         {
             statItem->setTextColor(QColor(255, 0, 0, 255));
+            statItem->setIcon(QIcon(":/images/error.png"));
+        }
+        if(getLogStat(filePathList.at(i))=="Failed")
+        {
+            statItem->setTextColor(QColor(139,129,76 ,255));
+            statItem->setIcon(QIcon(":/images/retina-failed.png"));
         }
         statItem->setText(getLogStat(filePathList.at(i)));
 
@@ -140,8 +147,9 @@ void QJDHistoryBrowser::setLogFile()
 /// 读取状态
 QString QJDHistoryBrowser::getLogStat(QString fileName)
 {
-    QString SUCCESS="success";
-    QString ERROR="error";
+    QString SUCCESS="Success";
+    QString ERROR="Error";
+    QString FAILED="Failed";
     QFile file;
     file.setFileName(fileName);
     file.open(QFile::ReadOnly);
@@ -152,8 +160,10 @@ QString QJDHistoryBrowser::getLogStat(QString fileName)
     file.close();
     if(all.contains("Success!"))  // 校验
         return SUCCESS;
-    else
+    else if(all.contains("Error"))
         return ERROR;
+    else
+        return FAILED;
 }
 
 /// 读取进度

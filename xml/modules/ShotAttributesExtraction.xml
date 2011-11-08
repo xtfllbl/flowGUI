@@ -35,7 +35,7 @@
 <property name="attriFilename">
 	<desc>scanFileName</desc>
 	<datatype>string</datatype>
-	<displaytype name="lineedit">attr.sa</displaytype>
+	<displaytype name="filesave">attr.sa</displaytype>
 </property>
 </module>
 </ui>

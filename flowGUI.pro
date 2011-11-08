@@ -34,7 +34,9 @@ SOURCES += main.cpp\
     src/qjdhighlighter.cpp \
     src/qjdfilecombobox.cpp \
     qjdhistorybrowser.cpp \
-    src/qjdargu.cpp
+    src/qjdargu.cpp \
+    src/qjdfilereadline.cpp \
+    src/qjdfilesaveline.cpp
 
 HEADERS  += mainwindow.h \
     creatui.h \
@@ -59,7 +61,9 @@ HEADERS  += mainwindow.h \
     src/qjdhighlighter.h \
     src/qjdfilecombobox.h \
     qjdhistorybrowser.h \
-    src/qjdargu.h
+    src/qjdargu.h \
+    src/qjdfilereadline.h \
+    src/qjdfilesaveline.h
 
 FORMS    += \
     mainwindow.ui \
@@ -72,5 +76,13 @@ RESOURCES += \
 
 OTHER_FILES += \
     styles/stylesheet.qss
+
+
+
+
+
+
+
+
 
 

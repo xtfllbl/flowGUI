@@ -42,6 +42,11 @@
 	<datatype>float</datatype>
 	<displaytype name="lineedit">0.05</displaytype>
 </property>
+<property name="pickFileName">
+	<desc>pickFileName</desc>
+	<datatype>string</datatype>
+	<displaytype name="fileread">/home/lub/program/qt/flow/pick2.pick</displaytype>
+</property>
 <property name="isoutput">
 	<desc>isoutput</desc>
 	<datatype>bool</datatype>
@@ -50,7 +55,7 @@
 <property name="scanFileName">
 	<desc>scanFileName</desc>
 	<datatype>string</datatype>
-	<displaytype name="lineedit">scfilename2.scan</displaytype>
+	<displaytype name="filesave">scfilename2.scan</displaytype>
 </property>
 </module>
 </ui>

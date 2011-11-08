@@ -19,9 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move((width/2)-500,(height/2)-500);
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
-    _image.load(":/images/window.png");
-    setAutoFillBackground(true);
-
 //    setMaximumSize(1400,1000);  // 直接导致不能最大化
     QWidget *myWidget=new QWidget(this);
     this->setCentralWidget(myWidget);  //用来代替cw, 不知可行否
@@ -205,6 +202,9 @@ MainWindow::MainWindow(QWidget *parent) :
     textBrowser=new QJDTextBrowser();
 
     /// -----------设置样式----------------- ///
+    _image.load(":/images/window.png");
+    setAutoFillBackground(true);
+
     moduleTxt->setStyleSheet("border-image: url(:/styles/toolbarButton_hover.png) 3 3 3 3 stretch;"
                              "border-width: 3px 3px 3px 3px;"
                              "border-radius: 0px;");
@@ -214,14 +214,14 @@ MainWindow::MainWindow(QWidget *parent) :
     stackTxt->setStyleSheet("border-image: url(:/styles/toolbarButton_hover.png) 3 3 3 3 stretch;"
                             "border-width: 3px 3px 3px 3px;"
                             "border-radius: 0px;");
-    splitter->setStyleSheet("    QSplitter::handle {image: url(:/styles/normalButton_v.png);}QSplitter::handle:horizontal {width: 80px;}QSplitter::handle:vertical {height: 10px;}");
-    splitter2->setStyleSheet("    QSplitter::handle {image: url(:/styles/normalButton.png);}QSplitter::handle:horizontal {width: 80px;}QSplitter::handle:vertical {height: 10px;}");
+    splitter->setStyleSheet("QSplitter::handle {image: url(:/styles/normalButton_v.png);}QSplitter::handle:horizontal {width: 80px;}QSplitter::handle:vertical {height: 10px;}");
+    splitter2->setStyleSheet("QSplitter::handle {image: url(:/styles/normalButton.png);}QSplitter::handle:horizontal {width: 80px;}QSplitter::handle:vertical {height: 10px;}");
 
-    QFile file(":/styles/stylesheet.qss");
-    file.open(QIODevice::ReadOnly);
-    QTextStream in(&file);
-    QString style = in.readAll();
-    this->setStyleSheet(style);
+//    QFile file(":/styles/stylesheet.qss");
+//    file.open(QIODevice::ReadOnly);
+//    QTextStream in(&file);
+//    QString style = in.readAll();
+//    this->setStyleSheet(style);
 }
 
 MainWindow::~MainWindow()

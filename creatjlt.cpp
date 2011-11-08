@@ -139,8 +139,8 @@ void creatJLT::RunProcess()
     //JDP->start(argu->FlowProcess,paralist);
     qDebug()<<"para  !!!"<<paralist;
 
-//    JDP->start("./MainFlow",paralist);
-    JDP->start("geany",paralist);
+    JDP->start("./MainFlow",paralist);
+//    JDP->start("geany",paralist);
 
     qDebug()<<"Starting MainFlow";
     JDP->savePID();

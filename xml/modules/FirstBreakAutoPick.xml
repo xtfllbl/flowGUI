@@ -35,7 +35,7 @@
 <property name="pickFileName">
 	<desc>pickFileName</desc>
 	<datatype>string</datatype>
-	<displaytype name="lineedit">/home/lub/program/qt/flow/pick2.pick</displaytype>
+	<displaytype name="filesave">/home/lub/program/qt/flow/pick2.pick</displaytype>
 </property>
 </module>
 </ui>

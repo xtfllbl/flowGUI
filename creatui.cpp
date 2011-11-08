@@ -7,6 +7,8 @@
 #include "src/qjdspinbox.h"
 #include "src/qjdgroupbox.h"
 #include "src/qjdfilecombobox.h"
+#include "src/qjdfilereadline.h"
+#include "src/qjdfilesaveline.h"
 #include <QDir>
 
 /// readxml->creatui->creatjoblist
@@ -86,6 +88,8 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
 
     /// 带id
     QJDLineEdit *lineEdit=new QJDLineEdit;
+    QJDFileReadLine *fileRead=new QJDFileReadLine;
+    QJDFileSaveLine *fileSave=new QJDFileSaveLine;
     QJDCheckBox *checkBox=new QJDCheckBox;
     QJDComboBox *comboBox=new QJDComboBox;
     QJDFileComboBox *fileComboBox=new QJDFileComboBox;
@@ -99,8 +103,8 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
     {
         proLabel->setText(property);
         proLabel->setFixedWidth(150);
-        proLabel->setFrameShape(QFrame::Box);
-        proLabel->setFrameShadow(QFrame::Sunken);
+        proLabel->setFrameShape(QFrame::Panel);
+        proLabel->setFrameShadow(QFrame::Raised);
         normalLayout->addWidget(proLabel);
     }
     if(!desc.isEmpty())  //描述，tooltip
@@ -124,6 +128,30 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
             id=lineEdit->id();
             normalLayout->addWidget(lineEdit);
             widgetList.append(lineEdit);
+        }
+
+        /// ------------------------------------fileReadLine-------------------------------//
+        if(displaytype=="fileread")
+        {
+            fileRead->setMinimumWidth(200);
+            fileRead->setText(displayvalue);
+//            qDebug()<<"lineedit id::"<<lineEdit->id();
+            connect(fileRead,SIGNAL(sigLineEditChanged(QString,QString)),job,SLOT(lineEditChanged(QString,QString)));
+            id=fileRead->id();
+            normalLayout->addWidget(fileRead);
+            widgetList.append(fileRead);
+        }
+
+        /// ------------------------------------fileSaveLine-------------------------------//
+        if(displaytype=="filesave")
+        {
+            fileSave->setMinimumWidth(200);
+            fileSave->setText(displayvalue);
+//            qDebug()<<"lineedit id::"<<lineEdit->id();
+            connect(fileSave,SIGNAL(sigLineEditChanged(QString,QString)),job,SLOT(lineEditChanged(QString,QString)));
+            id=fileSave->id();
+            normalLayout->addWidget(fileSave);
+            widgetList.append(fileSave);
         }
 
         /// ------------------------------------checkBox-------------------------------//
@@ -242,6 +270,8 @@ void creatUI::creatNormalWidget(const QString property, const QString desc, cons
     }
 
     finalLayout->addLayout(normalLayout);
+
+//    qDebug()<<proLabel->height();
     /// -------------------------------------  write to job -------------------------------------///
     job->addNormalWidget(property,desc,datatype,min,max,displaytype,displayvalue,optiontext,optionvalue,
                          id,groupBox->id(),radioIDList);
