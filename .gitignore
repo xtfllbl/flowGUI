@@ -61,6 +61,7 @@ share/qtcreator/translations/qtcreator_untranslated.ts
 
 debug
 job/*
-
+xml/job/*
+*.so.4
 
 
