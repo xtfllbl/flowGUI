@@ -180,6 +180,11 @@ void creatJLT::parsePropertyElement(QDomElement const& property)
     }
 
     QString widgetType=displayType.attribute("name");
+    if(widgetType=="fileread" || widgetType=="filesave")
+    {
+        qDebug()<<"fileread write in as:: "<<property.attribute("name")<<displayType.text();
+        textStream<<property.attribute("name")<<"="<<displayType.text()<<";";
+    }
     if(widgetType=="lineedit" || widgetType=="spinbox")
     {
         qDebug()<<"line/spin write in as:: "<<property.attribute("name")<<displayType.text();
