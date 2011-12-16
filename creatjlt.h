@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QtXml>
 #include <QFile>
+#include "src/qjdargu.h"
 
 class creatJLT : public QObject
 {
@@ -14,6 +15,8 @@ public:
 signals:
 
 private:
+    QJDArgu *argu;
+
     QString xmlFileName;
     QFile fileXMLJob;
     QDomDocument domDocument;

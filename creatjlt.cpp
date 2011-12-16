@@ -6,8 +6,11 @@
 creatJLT::creatJLT(QObject *parent) :
         QObject(parent)
 {
+    argu=new QJDArgu;
+
     xmlFileName.clear();
-    exFile.setFileName("joblist/ceshishuchu.txt");
+    QString filepath=argu->flowGuiPath+"/joblist/ceshishuchu.txt";
+    exFile.setFileName(filepath);
     count=99;
     processCount=0;
     hashJob.clear();
@@ -129,9 +132,9 @@ void creatJLT::startRun()
 }
 void creatJLT::RunProcess()
 {
-    QJDArgu *argu=new QJDArgu;
     QStringList paralist;
-    paralist.append("joblist/ceshishuchu.txt");
+    QString filepath=argu->flowGuiPath+"/joblist/ceshishuchu.txt";
+    paralist.append(filepath);
 
     /// --------------- 每执行一个，信息应当保存，直到被覆盖----------------///
     QJDProcess *JDP=new QJDProcess;

@@ -4,7 +4,6 @@
 #include <QLabel>
 #include "signal.h"
 #include "errno.h"
-#include "src/qjdargu.h"
 
 // 还一处在creatjlts
 #define PROGRAM "MainFlow"   // 过滤进程名称
@@ -19,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     this->move((width/2)-500,(height/2)-500);
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
 
+    argu=new QJDArgu();
+    qDebug()<<argu->flowGuiPath;
 //    setMaximumSize(1400,1000);  // 直接导致不能最大化
     QWidget *myWidget=new QWidget(this);
     this->setCentralWidget(myWidget);  //用来代替cw, 不知可行否
@@ -259,7 +260,6 @@ void MainWindow::setProcData()
     model->setHeaderData(5, Qt::Horizontal, tr("COMMAND LINE"));
     model->setHeaderData(6, Qt::Horizontal, tr("USERNAME"));
 
-    QJDArgu *argu=new QJDArgu;
     // 向表格中输入数据
     /// 在此筛选,重要循环
     int countRow=0;

@@ -14,6 +14,7 @@
 #include "process/qjdproc.h"
 #include "src/qjdtextbrowser.h"
 #include "qjdhistorybrowser.h"
+#include "src/qjdargu.h"
 
 namespace Ui {
     class MainWindow;
@@ -26,6 +27,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    QJDArgu *argu ;
 
     // 需要的控件
     QJDModuleList *moduleList;

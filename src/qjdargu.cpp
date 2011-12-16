@@ -8,5 +8,6 @@ QJDArgu::QJDArgu(QObject *parent) :
     FlowProcess="MainFlow";
 //    FlowProcess="geany";
     HistoryLogRefreshInterval=3000;
-}
 
+    flowGuiPath=QApplication::applicationDirPath();
+}

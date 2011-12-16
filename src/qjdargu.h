@@ -2,6 +2,7 @@
 #define QJDARGU_H
 
 #include <QObject>
+#include <QApplication>
 
 class QJDArgu : public QObject
 {
@@ -12,10 +13,10 @@ public:
     QString FlowProcess;
     int HistoryLogRefreshInterval;
 
+    QString flowGuiPath;
 signals:
 
 public slots:
-
 };
 
 #endif // QJDARGU_H

@@ -835,7 +835,7 @@ void writeJob::parsePropertyElement(QDomElement property,QString text)
     QString type=oldDisplayType.attribute("name");
 
     // ------------------------------- 一般控件--------------------------//
-    if(type=="lineedit" || type=="checkbox" || type=="spinbox")
+    if(type=="lineedit" || type=="checkbox" || type=="spinbox" || type=="fileread" || type=="filesave")
     {
         QDomElement newDisplayType = doc.createElement("displaytype");
         newDisplayType.setAttribute("name",oldDisplayType.attribute("name"));  //保留控件类型
