@@ -35,7 +35,8 @@ QJDModuleList::QJDModuleList(QWidget *parent) :
 void QJDModuleList::analysisIndexXML()
 {
     /// ----------------------------解析索引----------------------------
-    fileXMLIndex.setFileName(":/xml/index.xml");
+    QJDArgu *argu=new QJDArgu();
+    fileXMLIndex.setFileName(argu->flowGuiPath+"/xml/index.xml");
     fileXMLIndex.open(QFile::ReadOnly);
     indexXML->read(&fileXMLIndex);
 }
