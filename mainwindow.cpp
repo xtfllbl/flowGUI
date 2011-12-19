@@ -132,7 +132,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //    connect(downButton,SIGNAL(pressed()),flowList,SLOT(downFlow()));
     //    connect(delButton,SIGNAL(pressed()),flowList,SLOT(delFlow()));
     /// xml当中去删除,上移，下移，开启，关闭
-    connect(flowList,SIGNAL(sigDeleteFlow(int)),stackWidget,SLOT(delFlowWidget(int)));
+    connect(flowList,SIGNAL(sigDeleteFlow(int,int)),stackWidget,SLOT(delFlowWidget(int,int)));
     //    connect(flowList,SIGNAL(sigUpFlow(int)),stackWidget,SLOT(moveUpFlowWidget(int)));
     //    connect(flowList,SIGNAL(sigDownFlow(int)),stackWidget,SLOT(moveDownFlowWidget(int)));
     connect(flowList,SIGNAL(sigTurnOn(int)),stackWidget,SLOT(turnOnWidget(int)));

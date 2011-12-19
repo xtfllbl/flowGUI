@@ -124,6 +124,7 @@ void QJDFlowList::mouseMoveEvent(QMouseEvent *event)
 void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
 {
 //    qDebug()<<"flowList addFlow~~~~~~~~~~~~~~~~~~~~~~~~~~~";
+    qDebug()<<"QJDFlowList::addFlow::"<<hashItem;
     QListWidgetItem *item=new QListWidgetItem;
     item->setText(flowName);
     item->setTextColor(Qt::blue);
@@ -150,6 +151,7 @@ void QJDFlowList::addFlow(const QString flowName, const QString flowPath)
          this->setCurrentRow(currentRow()+1);
     }
     index++;
+    qDebug()<<"QJDFlowList::addFlow::"<<hashItem;
 
     setEnabled(true);
     //    qDebug()<<"current item ::" <<currentItem()<<currentRow();
@@ -374,5 +376,27 @@ void QJDFlowList::actDelSlot()
 {
     qDebug()<<"QJDFlowList::actDelSlot";
     QListWidgetItem *delItem = this->takeItem(currentRow());
-    emit sigDeleteFlow(hashItem.value(delItem));
+    emit sigDeleteFlow(hashItem.value(delItem),hashItem.count()-1);
+    resetDelHashValue(currentRow(),this->count()-1,delItem);
+}
+
+void QJDFlowList::resetDelHashValue(int current, int all,QListWidgetItem *delItem)
+{
+    index--;
+    if(all-current==0)
+    {
+        hashItem.remove(delItem);
+    }
+    if(all-current>0)
+    {
+        hashItem.remove(delItem);
+        QListWidgetItem *hashModuleName;
+        foreach(hashModuleName,hashItem.keys())
+        {
+            if(hashModuleName!=delItem && hashItem.value(hashModuleName)>current)
+            {
+                hashItem.insert(hashModuleName,hashItem.value(hashModuleName)-1);
+            }
+        }
+    }
 }

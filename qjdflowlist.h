@@ -22,13 +22,13 @@ signals:
     void sigAddFlowWidget(QString,QString,int);
     void sigAddHashListAndCreat(QListWidgetItem *);
 
-    void sigDeleteFlow(int);
+    void sigDeleteFlow(int,int);
 //    void sigUpFlow(int stackIndex);  // 需要前项和后项么？不需要，往上挪就是了
 //    void sigDownFlow(int stackIndex);
     void sigChangeStackWidgetIndex(QListWidgetItem *);
 
     void sigTurnOn(int);
-    void sigTurnOff(int);
+    void sigTurnOff(int stackIndex);
 
     void sigDrag(int stackIndex,int dragIndex,int allRow);  //插到原有这个位置的控件之前就可以了
 public slots:
@@ -69,6 +69,7 @@ private:
 
     void insertHashValue(int,QListWidgetItem *);
     void resetHashValue(int,int,QListWidgetItem *);
+    void resetDelHashValue(int,int,QListWidgetItem *);
 
 };
 

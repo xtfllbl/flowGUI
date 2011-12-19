@@ -986,7 +986,7 @@ void writeJob::parsePropertyElement(QDomElement property, QString text, QString 
 }
 bool writeJob::deleteThisJob()
 {
-    qDebug()<<"job will be delete from the xml";
+    qDebug()<<"writeJob::job will be delete from the xml";
     if(fileRead.isOpen())
         qDebug()<<"fileRead is already open";
     fileRead.setFileName(jobFileName);
@@ -1025,7 +1025,7 @@ bool writeJob::deleteThisJob()
 
 void writeJob::delModuleName(const QString name)
 {
-    qDebug()<<"delModuleName";
+    qDebug()<<"writeJob::delModuleName::"<<name;
     QDomElement root = doc.documentElement();
     QDomElement modEle = root.firstChildElement("Module");
 
@@ -1039,7 +1039,9 @@ void writeJob::delModuleName(const QString name)
         modEle = modEle.nextSiblingElement("Module");
     }
     if(!write())
+    {
         qDebug()<<"delete job failed";
+    }
 }
 
 //bool writeJob::upThisJob()

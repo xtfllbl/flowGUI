@@ -13,8 +13,9 @@ QJDStackWidget::QJDStackWidget(QWidget *parent) :
 
 void QJDStackWidget::addFlowWidget(QString flowName, QString flowPath,int value)
 {
-    qDebug()<<" qjdStackWidget::addFlowWidget";
+    qDebug()<<" qjdStackWidget::addFlowWidget"<<hashCreat;
     creatWidget(flowName,flowPath,value);
+    qDebug()<<" qjdStackWidget::addFlowWidget"<<hashCreat;
 }
 
 void QJDStackWidget::addHashListAndCreat(QListWidgetItem *item)
@@ -96,27 +97,14 @@ void QJDStackWidget::getJobXMLfileName(const QString fileName)
     jobFileName=fileName;
 }
 
-void QJDStackWidget::delFlowWidget(int stackIndex)
+void QJDStackWidget::delFlowWidget(int stackIndex,int allIndex)
 {
-    qDebug()<<"delFlowWidget";
     creatUI *delCreat=hashCreat.key(stackIndex);  // 找出那个creat
-    delCreat->deleteJob();
-
+    qDebug()<<"QJDStackWidget::delFlowWidget::"<<delCreat;
+    delCreat->deleteJob();  /// 问题出在这
+    resetDelHash(stackIndex,allIndex,delCreat);
     delete delCreat;  // 删除本尊,但其实area还是存在的,所以不会造成崩溃
 }
-
-//void qjdStackWidget::moveUpFlowWidget(int stackIndex)
-//{
-//     //如何找到然后上下？？？
-//    creatUI *upCreat=hashCreat.key(stackIndex);
-//    upCreat->upJob();
-
-//}
-//void qjdStackWidget::moveDownFlowWidget(int stackIndex)
-//{
-//    creatUI *downCreat=hashCreat.key(stackIndex);
-//    downCreat->downJob();
-//}
 
 void QJDStackWidget::turnOnWidget(int stackIndex)
 {
@@ -155,6 +143,29 @@ void QJDStackWidget::dragWidget(int stackIndex, int currentIndex,int allRow)
     resetHash(stackIndex,currentIndex,dragCreat);
     qDebug()<<hashCreat;
 
+}
+
+void QJDStackWidget::resetDelHash(int current, int all,creatUI *delCreat)
+{
+    qDebug()<<"QJDStackWidget::resetDelHash::"<<hashCreat;
+    stackIndex--;
+    if(all-current==0)
+    {
+        hashCreat.remove(delCreat);
+    }
+    if(all-current>0)
+    {
+        hashCreat.remove(delCreat);
+        creatUI *creatui;
+        foreach(creatui,hashCreat.keys())
+        {
+            if(creatui!=delCreat && hashCreat.value(creatui)>current)
+            {
+                hashCreat.insert(creatui,hashCreat.value(creatui)-1);
+            }
+        }
+    }
+    qDebug()<<"hashcreat::"<<hashCreat;
 }
 
 void QJDStackWidget::resetHash(int before, int after, creatUI *dragC)

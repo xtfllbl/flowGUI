@@ -28,7 +28,7 @@ public slots:
     void addHashListAndCreat(QListWidgetItem *);
 
     void getJobXMLfileName(const QString);
-    void delFlowWidget(int);
+    void delFlowWidget(int,int);
 //    void moveUpFlowWidget(int);
 //    void moveDownFlowWidget(int);
 
@@ -45,6 +45,7 @@ private:
 
     void creatWidget(QString, QString, int);
     void resetHash(int,int,creatUI *);
+    void resetDelHash(int,int,creatUI *);
     void insertHash(int,creatUI *);
 
 };
