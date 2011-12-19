@@ -1,12 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>xml/modules/AbnormalTraceScan.xml</file>
-        <file>xml/modules/datain.xml</file>
-        <file>xml/modules/FirstBreakAutoPick.xml</file>
-        <file>xml/modules/pick.xml</file>
-        <file>xml/modules/resample.xml</file>
-        <file>xml/modules/ShotAttributesExtraction.xml</file>
-        <file>xml/modules/TraceDisplay.xml</file>
         <file>xml/index.xml</file>
     </qresource>
 </RCC>

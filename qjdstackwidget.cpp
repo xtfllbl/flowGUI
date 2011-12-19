@@ -165,7 +165,6 @@ void QJDStackWidget::resetDelHash(int current, int all,creatUI *delCreat)
             }
         }
     }
-    qDebug()<<"hashcreat::"<<hashCreat;
 }
 
 void QJDStackWidget::resetHash(int before, int after, creatUI *dragC)

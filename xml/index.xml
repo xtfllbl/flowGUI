@@ -4,38 +4,38 @@
 <modulegroup name="module group 1">
 
 <module name="ReSample" version="1.0">
-    <path>:/xml/modules/resample.xml</path>
+    <path>/xml/modules/resample.xml</path>
     <desc>This is a resample module.</desc>
     <type>Data Process</type>
 </module>
 
 <module name="FirstBreakAutoPick" version="1.0">
-    <path>:/xml/modules/FirstBreakAutoPick.xml</path>
+    <path>/xml/modules/FirstBreakAutoPick.xml</path>
     <desc>This is a auto pick module. </desc>
     <type>Data Process</type>
 </module>
 
 <module name="Data Input" version="1.0">
-    <path>:/xml/modules/datain.xml</path>
+    <path>/xml/modules/datain.xml</path>
     <desc>This is a data input module. </desc>
      <type>Data IO</type>
 </module>
 
 <module name="AbnormalTraceScan" version="1.0">
-    <path>:/xml/modules/AbnormalTraceScan.xml</path>
+    <path>/xml/modules/AbnormalTraceScan.xml</path>
     <desc>This is a AbnormalTraceScan module. </desc>
     <type>Data Process</type>
 </module>
 
 <module name="ShotAttributesExtraction" version="1.0">
-    <path>:/xml/modules/ShotAttributesExtraction.xml</path>
+    <path>/xml/modules/ShotAttributesExtraction.xml</path>
     <desc>This is a ShotAttributesExtraction module. </desc>
     <type>Data Process</type>
 </module>
 
 
 <module name="TraceDisplay" version="1.0">
-    <path>:/xml/modules/TraceDisplay.xml</path>
+    <path>/xml/modules/TraceDisplay.xml</path>
     <desc>This is a ShotAttributesExtraction module. </desc>
     <type>Data Process</type>
 </module>

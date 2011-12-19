@@ -1,6 +1,7 @@
 #include "qjdmodulelist.h"
 #include <QDebug>
 #include <QtGui>
+#include "src/qjdargu.h"
 
 QJDModuleList::QJDModuleList(QWidget *parent) :
     QTreeWidget(parent)
@@ -78,6 +79,7 @@ void QJDModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
 {
 //    qDebug()<<item->text(col);  // 不想要的text也会有。。
 
+    QJDArgu *argu=new QJDArgu();
     QStringList a,c;
     a=indexXML->getModuleName();
     c=indexXML->getModulePath();   //路径
@@ -100,7 +102,8 @@ void QJDModuleList::handleItemDoubleClickedEvent(QTreeWidgetItem *item, int col)
     {
         /// TODO功能: 添加流程到最后,或者添加到当前的index之后
         // 双击之后，添加模块(widget),首先要生成widget，包括读取模块xml
-        QString flowPath=indexXML->getModulePath().at(flowIndex);
+        QString flowPath;
+        flowPath=argu->flowGuiPath+indexXML->getModulePath().at(flowIndex);
         emit sigAddFlowList(flowName,flowPath);
     }
 }
